@@ -1,4 +1,5 @@
-@import "tailwindcss";
+/* 클래스 스캔 범위를 src/ 로 한정 (docs·CLAUDE.md 의 예시 클래스가 생성되지 않도록) */
+@import "tailwindcss" source("../");
 @import "./tokens.css";
 
 /*
@@ -106,7 +107,8 @@
   --text-label--line-height: var(--text-label-leading);
   --text-label--letter-spacing: var(--tracking-label);
 
-  /* 간격: p-1(4) … p-11(192). gap/margin/size 유틸리티 공통 */
+  /* 간격: p-1(4) … p-11(192). gap/margin/size 유틸리티 공통. 0 은 초기화용(inset-0, p-0 등) */
+  --spacing-0: 0px;
   --spacing-1: var(--space-1);
   --spacing-2: var(--space-2);
   --spacing-3: var(--space-3);
@@ -152,6 +154,20 @@
 }
 @utility duration-breath {
   transition-duration: var(--dur-breath);
+}
+
+/* 숨쉬기 펄스: 로딩 상태(Skeleton, Button loading) 공통. --dur-breath 주기 */
+@keyframes breath {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+@utility animate-breath {
+  animation: breath var(--dur-breath) var(--ease-in-out) infinite;
 }
 
 @layer base {
