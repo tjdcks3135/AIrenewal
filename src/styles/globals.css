@@ -1,0 +1,190 @@
+@import "tailwindcss";
+@import "./tokens.css";
+
+/*
+ * Tailwind 테마 = docs/DESIGN.md 토큰만.
+ * `--*: initial` 로 Tailwind 기본 팔레트·간격·크기를 모두 지우고,
+ * tokens.css 의 CSS 변수만 연결한다. (bg-zinc-500, p-13, text-xl 같은 기본값은 생성되지 않음)
+ * `inline reference`: 유틸리티가 var(--token) 을 직접 참조하고, 테마 변수를 :root 에 다시 내보내지 않는다(값의 원본은 tokens.css 하나).
+ */
+@theme inline reference {
+  --*: initial;
+
+  /* 브레이크포인트 (DESIGN.md §4) — 미디어 쿼리에는 var() 를 쓸 수 없어 값으로 둔다 */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1440px;
+  --breakpoint-2xl: 1920px;
+
+  /* 컬러 — 기본: bg-bg, bg-surface, text-text-2, border-line, bg-brand … */
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-surface-2: var(--color-surface-2);
+  --color-line: var(--color-line);
+  --color-text: var(--color-text);
+  --color-text-2: var(--color-text-2);
+  --color-text-3: var(--color-text-3);
+  --color-brand: var(--color-brand);
+  --color-brand-strong: var(--color-brand-strong);
+  --color-brand-deep: var(--color-brand-deep);
+  --color-on-brand: var(--color-on-brand);
+  --color-danger: var(--color-danger);
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  /* 컬러 — 커뮤니티 카테고리: bg-cat-discussion … */
+  --color-cat-discussion: var(--cat-discussion);
+  --color-cat-today: var(--cat-today);
+  --color-cat-kit: var(--cat-kit);
+  --color-cat-meetup: var(--cat-meetup);
+
+  /* 컬러 — 감정 팔레트: bg-emo-hope … */
+  --color-emo-longing: var(--emo-longing);
+  --color-emo-hope: var(--emo-hope);
+  --color-emo-joy: var(--emo-joy);
+  --color-emo-loneliness: var(--emo-loneliness);
+  --color-emo-calm: var(--emo-calm);
+  --color-emo-sadness: var(--emo-sadness);
+  --color-emo-fear: var(--emo-fear);
+  --color-emo-anger: var(--emo-anger);
+
+  /* 폰트 */
+  --font-sans: var(--font-family-base);
+  --default-font-family: var(--font-family-base);
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+
+  --tracking-heading: var(--tracking-heading);
+  --tracking-body: var(--tracking-body);
+  --tracking-label: var(--tracking-label);
+
+  /* 타입 스케일: text-display, text-h1 … text-label (크기+굵기+행간+자간 한 번에) */
+  --text-display: var(--text-display);
+  --text-display--font-weight: var(--text-display-weight);
+  --text-display--line-height: var(--text-display-leading);
+  --text-display--letter-spacing: var(--tracking-heading);
+
+  --text-h1: var(--text-h1);
+  --text-h1--font-weight: var(--text-h1-weight);
+  --text-h1--line-height: var(--text-h1-leading);
+  --text-h1--letter-spacing: var(--tracking-heading);
+
+  --text-h2: var(--text-h2);
+  --text-h2--font-weight: var(--text-h2-weight);
+  --text-h2--line-height: var(--text-h2-leading);
+  --text-h2--letter-spacing: var(--tracking-heading);
+
+  --text-h3: var(--text-h3);
+  --text-h3--font-weight: var(--text-h3-weight);
+  --text-h3--line-height: var(--text-h3-leading);
+  --text-h3--letter-spacing: var(--tracking-heading);
+
+  --text-body-lg: var(--text-body-lg);
+  --text-body-lg--font-weight: var(--text-body-lg-weight);
+  --text-body-lg--line-height: var(--text-body-lg-leading);
+  --text-body-lg--letter-spacing: var(--tracking-body);
+
+  --text-body: var(--text-body);
+  --text-body--font-weight: var(--text-body-weight);
+  --text-body--line-height: var(--text-body-leading);
+  --text-body--letter-spacing: var(--tracking-body);
+
+  --text-caption: var(--text-caption);
+  --text-caption--font-weight: var(--text-caption-weight);
+  --text-caption--line-height: var(--text-caption-leading);
+  --text-caption--letter-spacing: var(--tracking-body);
+
+  /* label 은 대문자로 쓴다: class="text-label uppercase" */
+  --text-label: var(--text-label);
+  --text-label--font-weight: var(--text-label-weight);
+  --text-label--line-height: var(--text-label-leading);
+  --text-label--letter-spacing: var(--tracking-label);
+
+  /* 간격: p-1(4) … p-11(192). gap/margin/size 유틸리티 공통 */
+  --spacing-1: var(--space-1);
+  --spacing-2: var(--space-2);
+  --spacing-3: var(--space-3);
+  --spacing-4: var(--space-4);
+  --spacing-5: var(--space-5);
+  --spacing-6: var(--space-6);
+  --spacing-7: var(--space-7);
+  --spacing-8: var(--space-8);
+  --spacing-9: var(--space-9);
+  --spacing-10: var(--space-10);
+  --spacing-11: var(--space-11);
+  --spacing-gutter: var(--grid-gutter);
+
+  /* 콘텐츠 최대 폭: max-w-content */
+  --container-content: var(--content-max);
+
+  /* Radius: rounded-sm/md/lg/pill */
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-pill: var(--radius-pill);
+
+  /* 그림자: shadow-glow, shadow-overlay */
+  --shadow-glow: var(--shadow-glow);
+  --shadow-overlay: var(--shadow-overlay);
+
+  /* 이징: ease-out, ease-in-out */
+  --ease-out: var(--ease-out);
+  --ease-in-out: var(--ease-in-out);
+  --default-transition-duration: var(--dur-base);
+  --default-transition-timing-function: var(--ease-out);
+}
+
+/* 모션 시간: duration-fast / base / slow / breath (Tailwind 에 duration 테마 네임스페이스가 없어 유틸리티로 정의) */
+@utility duration-fast {
+  transition-duration: var(--dur-fast);
+}
+@utility duration-base {
+  transition-duration: var(--dur-base);
+}
+@utility duration-slow {
+  transition-duration: var(--dur-slow);
+}
+@utility duration-breath {
+  transition-duration: var(--dur-breath);
+}
+
+@layer base {
+  html {
+    background-color: var(--color-bg);
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-family-base);
+    font-size: var(--text-body);
+    font-weight: var(--text-body-weight);
+    line-height: var(--text-body-leading);
+    letter-spacing: var(--tracking-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
