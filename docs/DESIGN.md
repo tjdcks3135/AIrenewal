@@ -104,7 +104,7 @@ bg `#050807` · surface `#0E1613` · surface-2 `#16211C` · line `#24332C` · te
 - **하프톤 세계지도**: 온보딩, 메인 히어로 배경 텍스처 (낮은 불투명도)
 - **점선 밑줄(체인 도트)**: 핵심 문장 강조
 - **사다리형 화살표 라인**: 섹션 전환, NextStepCTA
-- **로고(AI-I Human Labor Union)**: GNB, 조합원 카드, 파비콘. 심볼 파일 `public/images/brand/logo.svg` (단색 `--color-brand`, 사람 형태의 "i"). 심볼 옆에 글자 로고를 함께 쓴다.
+- **로고(AI-I Human Labor Union)**: 메인 로딩 화면, GNB, 조합원 카드, 파비콘. 심볼 파일 `public/images/brand/logo.svg` (단색 `--color-brand`, 사람 형태의 "i"). 심볼 옆에 글자 로고를 함께 쓴다.
 
 ## 3. 컴포넌트 목록
 새 컴포넌트가 필요하면 이 목록에 먼저 추가한다.
@@ -116,7 +116,9 @@ bg `#050807` · surface `#0E1613` · surface-2 `#16211C` · line `#24332C` · te
 | `Footer` | 메뉴 + 세계관 카피 + 프로젝트 크레딧 |
 | `NextStepCTA` | 다음 페이지 제목 + 화살표 라인. 페이지 하단 공통 |
 | `SectionHeader` | 인덱스(01 / 05) + label + 제목 + 설명 |
-| `PhotoSection` | 메인용. 사진 + 텍스트 + 링크, 좌우 배치 교차 |
+| `PhotoSection` | 메인용. 사진 + 텍스트 + 링크, 좌우 배치 교차 (모바일·캡처 모드의 정지 배치) |
+| `Preloader` | 메인 로딩 화면. `--color-header` 배경 + 로고 심볼 (`FEATURES.md` §3.5) |
+| `ScrollStory` | 메인 섹션 2~5 스크롤 연출. 고정 사진 + 바뀌는 텍스트 + 진행 점·카운터 (`FEATURES.md` §3.6) |
 | `Chip` | 감정 칩(8색, 선택 가능) · 카테고리 칩(필터) |
 | `TextField` / `TextArea` | 라벨, 도움말, 오류 메시지, 글자 수 카운터 |
 | `Stepper` | 가입 단계 표시 |
