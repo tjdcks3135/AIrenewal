@@ -14,7 +14,7 @@ type StepperProps = {
 export function Stepper({ steps, current, className }: StepperProps) {
   return (
     <div className={cn("flex flex-col gap-4", className)}>
-      <p className="text-label uppercase text-brand">{UI_TEXT.stepOf(current, steps.length)}</p>
+      <p className="text-label uppercase text-brand-deep">{UI_TEXT.stepOf(current, steps.length)}</p>
       <ol className="grid grid-flow-col auto-cols-fr gap-2">
         {steps.map((title, i) => {
           const step = i + 1;

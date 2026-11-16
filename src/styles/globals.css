@@ -31,6 +31,9 @@
   --color-brand-deep: var(--color-brand-deep);
   --color-on-brand: var(--color-on-brand);
   --color-danger: var(--color-danger);
+  --color-header: var(--color-header);
+  --color-on-header: var(--color-on-header);
+  --color-on-header-2: var(--color-on-header-2);
   --color-transparent: transparent;
   --color-current: currentColor;
 
@@ -173,7 +176,7 @@
 @layer base {
   html {
     background-color: var(--color-bg);
-    color-scheme: dark;
+    color-scheme: light;
   }
 
   body {
@@ -186,11 +189,19 @@
     letter-spacing: var(--tracking-body);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* 한글을 단어(어절) 단위로 줄바꿈 */
+    word-break: keep-all;
+    overflow-wrap: break-word;
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-brand);
+    outline: 2px solid var(--color-brand-deep);
     outline-offset: 2px;
+  }
+
+  /* 짙은 초록 헤더 안에서는 포커스 표시를 흰색으로 */
+  [data-surface="header"] :focus-visible {
+    outline-color: var(--color-on-header);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -202,5 +213,17 @@
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
+  }
+}
+
+/* 페이지 컨테이너: 최대 폭 1440px + 좌우 여백 모바일 20px / 데스크톱 64px (DESIGN.md §1.5)
+   전환 지점은 md(768px) — 문서 미정, 확정 필요 */
+@utility container-page {
+  width: 100%;
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--page-gutter-mobile);
+  @variant md {
+    padding-inline: var(--page-gutter-desktop);
   }
 }

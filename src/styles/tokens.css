@@ -5,22 +5,25 @@
  */
 
 :root {
-  /* ── 1.1 컬러 — 기본 ───────────────────────────── */
-  --color-bg: #050807;
-  --color-surface: #0e1613;
-  --color-surface-2: #16211c;
-  --color-line: #24332c;
-  --color-text: #f2fbf7;
-  --color-text-2: #a3bab0;
-  --color-text-3: #62786e;
-  --color-brand: #00ffb7; /* 강조·큰 글자에만. 긴 본문 금지 */
-  --color-brand-strong: #00e2a2;
-  --color-brand-deep: #006548;
+  /* ── 1.1 컬러 — 기본 (화이트 베이스) ─────────────────── */
+  --color-bg: #ffffff;
+  --color-surface: #f4f7f6;
+  --color-surface-2: #e9efec;
+  --color-line: #d6e0dc;
+  --color-text: #0a0f0d;
+  --color-text-2: #43514b;
+  --color-text-3: #6b7a73;
+  --color-brand: #5dc3ab; /* 로고 민트. 면(버튼 배경·활성 표시)에만. 흰 배경 위 글자색 금지 */
+  --color-brand-strong: #54b09a;
+  --color-brand-deep: #006548; /* 강조 글자·포커스 */
   --color-on-brand: #000000;
-  --color-danger: #ff6b5c;
+  --color-danger: #d63a2b;
+  --color-header: var(--color-brand-deep); /* 헤더(GNB) 배경 */
+  --color-on-header: #ffffff;
+  --color-on-header-2: #b9ddd3;
 
   /* ── 1.2 컬러 — 커뮤니티 카테고리 ─────────────────── */
-  --cat-discussion: #00ffb7; /* 키움 토론 */
+  --cat-discussion: #5dc3ab; /* 키움 토론 */
   --cat-today: #c79bff; /* 오늘의 마음 */
   --cat-kit: #ddebe4; /* 생존키트 */
   --cat-meetup: #ffd45c; /* 만남 제안 */
@@ -102,8 +105,8 @@
   --radius-lg: 32px;
   --radius-pill: 999px;
 
-  --shadow-glow: 0 0 40px rgba(0, 255, 183, 0.25);
-  --shadow-overlay: 0 24px 80px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 0 40px rgba(93, 195, 171, 0.25);
+  --shadow-overlay: 0 24px 80px rgba(10, 15, 13, 0.16);
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);

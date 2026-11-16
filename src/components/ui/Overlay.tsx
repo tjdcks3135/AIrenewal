@@ -52,7 +52,7 @@ export function Overlay({ open, onClose, title, children, className }: OverlayPr
       }}
       className={cn(
         "m-auto w-full overflow-y-auto rounded-lg border border-line bg-surface text-text shadow-overlay",
-        "backdrop:bg-bg/80 sm:w-5/6 lg:w-2/3 xl:w-1/2",
+        "backdrop:bg-text/40 sm:w-5/6 lg:w-2/3 xl:w-1/2",
         className,
       )}
     >

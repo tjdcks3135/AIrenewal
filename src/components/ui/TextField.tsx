@@ -25,7 +25,7 @@ function FieldFrame({ id, label, required, help, error, count, children }: Field
       <label htmlFor={id} className="text-body font-semibold text-text">
         {label}
         {required && (
-          <span className="ml-1 text-brand" aria-hidden>
+          <span className="ml-1 text-brand-deep" aria-hidden>
             *
           </span>
         )}
@@ -54,7 +54,7 @@ function FieldFrame({ id, label, required, help, error, count, children }: Field
 const CONTROL =
   "w-full rounded-sm border bg-surface px-4 py-3 text-body text-text placeholder:text-text-3 " +
   "transition-colors duration-fast ease-out " +
-  "focus:border-brand disabled:cursor-not-allowed disabled:text-text-3";
+  "focus:border-brand-deep disabled:cursor-not-allowed disabled:text-text-3";
 
 function controlClasses(invalid: boolean, className?: string) {
   return cn(CONTROL, invalid ? "border-danger" : "border-line hover:enabled:border-text-3", className);

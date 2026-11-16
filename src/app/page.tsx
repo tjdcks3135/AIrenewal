@@ -1,4 +1,13 @@
-// TODO: 메인 페이지 (CLAUDE.md §4 작업 순서 5단계에서 구현). 지금은 토큰 적용 확인용 빈 셸.
+import { PagePlaceholder } from "@/app/_placeholder/PagePlaceholder";
+import { PageLayout } from "@/components/layout/PageLayout";
+import { UNION } from "@/content/world";
+
+// TODO: 메인 페이지 본문 (docs/PAGES.md §2) — 5단계. 히어로가 생기면 underHeader 사용
+// 메인은 IA.md §3 표에 "다음 단계"가 없다 (모든 페이지의 입구이므로)
 export default function Home() {
-  return <main className="min-h-dvh bg-bg text-text" />;
+  return (
+    <PageLayout next={null}>
+      <PagePlaceholder title={UNION.nameKo} />
+    </PageLayout>
+  );
 }

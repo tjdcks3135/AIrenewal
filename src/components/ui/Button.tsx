@@ -19,11 +19,11 @@ const VARIANTS: Record<ButtonVariant, string> = {
     "disabled:bg-surface-2 disabled:text-text-3 disabled:shadow-none " +
     "aria-disabled:bg-surface-2 aria-disabled:text-text-3",
   secondary:
-    "border border-text-2 text-text hover:border-brand hover:text-brand active:bg-surface-2 " +
+    "border border-text-2 text-text hover:border-brand-deep hover:text-brand-deep active:bg-surface-2 " +
     "disabled:border-line disabled:text-text-3 disabled:hover:text-text-3 " +
     "aria-disabled:border-line aria-disabled:text-text-3",
   ghost:
-    "text-text-2 hover:text-text active:text-brand " +
+    "text-text-2 hover:text-text active:text-brand-deep " +
     "disabled:text-text-3 disabled:hover:text-text-3 aria-disabled:text-text-3",
 };
 

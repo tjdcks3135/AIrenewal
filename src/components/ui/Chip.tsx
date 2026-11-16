@@ -45,7 +45,7 @@ function chipClasses(tone: ChipTone | undefined, selected: boolean) {
   return cn(
     BASE,
     selected
-      ? cn("bg-surface-2 text-text", tone ? SELECTED_BORDER[tone] : "border-brand")
+      ? cn("bg-surface-2 text-text", tone ? SELECTED_BORDER[tone] : "border-brand-deep")
       : "border-line bg-surface text-text-2",
   );
 }
