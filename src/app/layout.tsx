@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ToastProvider } from "@/components/ui/Toast";
+import { AuthProvider } from "@/hooks/useAuth";
 import { SITE } from "@/content/world";
 import "@/styles/globals.css";
 
@@ -20,7 +21,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <link rel="stylesheet" href={PRETENDARD_CSS} />
       </head>
       <body>
-        <ToastProvider>{children}</ToastProvider>
+        <AuthProvider>
+          <ToastProvider>{children}</ToastProvider>
+        </AuthProvider>
       </body>
     </html>
   );

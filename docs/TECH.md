@@ -5,7 +5,7 @@
 |---|---|---|
 | 프레임워크 | **Next.js (App Router) + TypeScript** | 페이지 라우팅이 IA와 1:1로 대응, AI 코딩 도구가 가장 잘 다룸 |
 | 스타일 | **Tailwind CSS** + `tokens.css`(CSS 변수) | 토큰을 Tailwind 테마로 연결해 임의값 사용을 막음 |
-| 인증·DB·실시간 | **Supabase** (Auth, Postgres, Realtime) | 로그인, 저장, "다른 사람의 입력이 실시간으로 보이는" 기능을 한 곳에서 해결 |
+| 인증·DB·실시간 | **Supabase** (Auth, Postgres, Realtime) — `@supabase/supabase-js`, `@supabase/ssr`(세션을 쿠키에 저장) | 로그인, 저장, "다른 사람의 입력이 실시간으로 보이는" 기능을 한 곳에서 해결 |
 | 배포 | **Vercel** | Next.js 기본 배포. 이전 버전의 GitHub Pages는 정적 사이트만 가능해서 로그인·DB에 부적합 |
 | UI 모션 | Motion (framer-motion) | 페이지·컴포넌트 전환 |
 | 아이(blob) | three.js (`@react-three/fiber`) + 노이즈 셰이더 | 유기적인 울렁임과 색 섞기. 성능이 부족하면 Canvas 2D + simplex-noise로 대체 |
@@ -54,6 +54,13 @@ NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
 ```
 `.env.local`에만 두고 저장소에 올리지 않는다(`.gitignore`). 발표용 계정 정보도 저장소에 넣지 않는다.
+`.env.example` 을 복사해 쓴다. 값이 없으면 사이트는 비로그인 상태로만 동작한다.
+
+### Supabase 프로젝트 준비 (처음 한 번)
+1. supabase.com 에서 프로젝트 생성 → Project Settings → API 의 URL·anon key 를 `.env.local` 에.
+2. Authentication → Sign In / Providers → Email → **Confirm email 끄기** (`FEATURES.md` §1).
+3. SQL Editor 에서 `supabase/migrations/` 파일을 순서대로 실행 → `supabase/seed.sql` 실행.
+4. 예시 데이터를 다시 넣을 때는 `seed.sql` 만 다시 실행.
 
 ## 5. 팀 작업 규칙
 - 한 사람이 한 페이지(또는 한 기능)를 맡고 브랜치를 나눈다.

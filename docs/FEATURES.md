@@ -95,6 +95,17 @@ reactions    post_id, user_id, created_at  (공감, 1인 1회, PK=post_id+user_i
 - 커뮤니티 카테고리 enum: `discussion 키움 토론 · today 오늘의 마음 · kit 생존키트 · meetup 만남 제안`
 - 보안(RLS): 읽기는 모두 허용, 쓰기는 본인 user_id로만, 수정·삭제는 본인 것만.
 - 실시간: `feelings`, `posts`, `comments` insert를 Realtime으로 구독.
+- 구현: `supabase/migrations/20261117000000_init.sql` (2026-11-17)
+  - **가입 → profiles 자동 생성**: `auth.users` insert 트리거(`handle_new_user`)가 가입 화면이 보낸 정보(이름, 이전 직업, 이유, 남길 말, 연락처, 서약 여부)로 profiles 를 만든다.
+  - **조합원 번호**: 시퀀스로 3903부터 자동 부여. 사용자가 정할 수 없다.
+  - **컬럼 권한**: RLS 는 행만 막으므로 컬럼 단위로 다시 제한한다.
+    - `phone` 은 API 로 **아무도 읽을 수 없다** (본인 포함). 팀은 DB 에서 직접 확인.
+    - 사용자는 `member_no`, `is_seed`, `is_pinned`(오늘의 질문) 를 쓰거나 바꿀 수 없다. 오늘의 질문 지정은 팀이 DB 에서.
+    - profiles 는 수정만 가능(삭제 정책 없음). 탈퇴가 필요하면 팀이 DB 에서 삭제 → 글·댓글·마음까지 함께 삭제(cascade).
+  - 글자 수 제한은 `feelings.body` 300자만 DB 에서 강제. 나머지는 빈 값 금지만.
+- 예시 데이터: `supabase/seed.sql`
+  - 예시 조합원 6명(CONTENT.md §4 화자)은 로그인할 수 없는 계정. 조합원 번호는 세계관 숫자 안쪽 3897–3902.
+  - 다시 실행해도 안전하다: 예시 조합원·글은 갱신, 예시 마음·댓글만 새로 넣는다. 실제 사용자 데이터와, 참여자가 예시 글에 단 댓글·공감은 그대로 남는다.
 
 ## 6. 상태와 예외처리 범위
 아래까지만 처리한다. 이보다 더 필요하면 문서에 먼저 추가한다.
