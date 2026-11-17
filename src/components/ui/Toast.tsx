@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
 // DESIGN.md §3 Toast — 성공/오류 알림, 3초
@@ -47,6 +47,9 @@ export function ToastProvider({ children }: { children: ReactNode }) {
     return () => map.forEach(clearTimeout);
   }, []);
 
+  // 컨텍스트 값을 고정해, useToast 를 의존성으로 쓰는 effect 가 매 렌더마다 다시 돌지 않게 한다
+  const api = useMemo<ToastApi>(() => ({ show }), [show]);
+
   // 토스트 영역을 popover(top layer)로 띄워, 열린 Overlay(<dialog>) 위에도 보이게 한다.
   // 새 토스트가 올 때마다 다시 열어 top layer 의 맨 위로 올린다.
   const regionRef = useRef<HTMLDivElement>(null);
@@ -58,7 +61,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
   }, [items]);
 
   return (
-    <ToastContext.Provider value={{ show }}>
+    <ToastContext.Provider value={api}>
       {children}
       <div
         ref={regionRef}

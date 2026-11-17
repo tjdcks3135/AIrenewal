@@ -7,7 +7,7 @@
 | 스타일 | **Tailwind CSS** + `tokens.css`(CSS 변수) | 토큰을 Tailwind 테마로 연결해 임의값 사용을 막음 |
 | 인증·DB·실시간 | **Supabase** (Auth, Postgres, Realtime) — `@supabase/supabase-js`, `@supabase/ssr`(세션을 쿠키에 저장) | 로그인, 저장, "다른 사람의 입력이 실시간으로 보이는" 기능을 한 곳에서 해결 |
 | 배포 | **Vercel** | Next.js 기본 배포. 이전 버전의 GitHub Pages는 정적 사이트만 가능해서 로그인·DB에 부적합 |
-| UI 모션 | Motion (framer-motion) | 페이지·컴포넌트 전환 |
+| UI 모션 | Motion (framer-motion) — npm 패키지 `motion`, `motion/react` 에서 가져옴 | 페이지·컴포넌트 전환, 메인 스크롤 연출 |
 | 아이(blob) | three.js (`@react-three/fiber`) + 노이즈 셰이더 | 유기적인 울렁임과 색 섞기. 성능이 부족하면 Canvas 2D + simplex-noise로 대체 |
 | 버블 광장 | d3-force | 겹치지 않는 배치, 고정 시드로 캡처 재현 |
 | 폰트 | Pretendard (CDN 또는 next/font/local) | |
@@ -25,7 +25,7 @@
 │     ├─ main/               # photo-01-hero.webp … photo-05-unpacked.webp
 │     ├─ kit/                # vest.webp, lunchbox.webp, invitation.webp, capsule.webp, object.webp
 │     ├─ placeholder/        # 회색 플레이스홀더
-│     └─ brand/              # logo.svg, map-halftone.svg
+│     └─ brand/              # logo.png (원본 그대로), map-halftone.svg
 ├─ src/
 │  ├─ app/                   # 라우트: page.tsx(/), intro/, manifesto/, kit/, join/, login/, grow/, community/, not-found.tsx
 │  ├─ components/

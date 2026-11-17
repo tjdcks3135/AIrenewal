@@ -62,7 +62,7 @@ export function Header() {
   return (
     <header data-surface="header" className="fixed inset-x-0 top-0 z-40 bg-header">
       <div className="container-page flex h-8 items-center justify-between gap-6">
-        <Logo onHeader />
+        <Logo />
 
         {/* 데스크톱 메뉴 */}
         <nav aria-label={NAV_TEXT.mainNav} className="hidden lg:block">
