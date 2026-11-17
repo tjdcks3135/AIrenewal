@@ -9,7 +9,7 @@ export const SITE = {
 export const UNION = {
   nameKo: "연대노동조합",
   nameEn: "Solidarity Union",
-  /** TODO: 로고 SVG(public/images/brand/logo.svg) 가 준비되면 이미지로 교체. 지금은 글자 로고 */
+  /** 글자 로고. 심볼(public/images/brand/logo.svg) 옆에 함께 쓴다 */
   logoText: "AI-I Human Labor Union",
 } as const;
 
