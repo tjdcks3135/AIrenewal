@@ -26,7 +26,7 @@
 | `--color-brand-deep` | `#006548` | **강조 글자**(활성 메뉴, 인덱스, 링크 호버), 포커스 표시, 그라데이션 하단 |
 | `--color-on-brand` | `#000000` | 민트 배경 위 텍스트 |
 | `--color-danger` | `#D63A2B` | 오류 (흰 배경 위 글자 대비 확보) |
-| `--color-header` | `#006548` (= `--color-brand-deep`) | 헤더(GNB) 배경. 로고 민트가 돋보이도록 짙은 초록 |
+| `--color-header` | `#006548` (= `--color-brand-deep`) | 헤더(GNB)·Footer·로딩 화면 배경. 로고(흰 패널 + 민트)가 온전히 보이도록 짙은 초록 |
 | `--color-on-header` | `#FFFFFF` | 헤더 위 글자 — 로고 글자, 현재 메뉴 |
 | `--color-on-header-2` | `#B9DDD3` | 헤더 위 보조 글자 — 나머지 메뉴 (대비 4.9:1) |
 
@@ -105,8 +105,11 @@ bg `#050807` · surface `#0E1613` · surface-2 `#16211C` · line `#24332C` · te
 - **하프톤 세계지도**: 온보딩, 메인 히어로 배경 텍스처 (낮은 불투명도)
 - **점선 밑줄(체인 도트)**: 핵심 문장 강조
 - **사다리형 화살표 라인**: 섹션 전환, NextStepCTA. `TODO(팀)` 발표자료의 모티프 SVG 필요 (지금은 단순한 선 + 화살표).
-- **로고(AI-I Human Labor Union)**: 메인 로딩 화면, GNB, 조합원 카드, 파비콘. 심볼 파일 `public/images/brand/logo.svg` (단색 `--color-brand`, 사람 형태의 "i"). 심볼 옆에 글자 로고를 함께 쓴다.
-  - 원본 이미지 `assets-src/brand/logo.png`. `TODO(팀)` 로고 원본 디자인 파일(AI·SVG)이 있으면 교체 — 지금 SVG 는 이미지를 측정해 다시 그린 것.
+- **로고(AI-I Human Labor Union)**: 메인 로딩 화면, GNB, Footer, 조합원 카드, 파비콘. 심볼 옆에 글자 로고를 함께 쓴다.
+  - 파일: `public/images/brand/logo.png` — 원본(`assets-src/brand/logo.png`)과 **같은 파일을 수정 없이** 쓴다. 다시 그리거나 색을 바꾸지 않는다.
+  - 구성: 흰 패널 두 장 — 왼쪽은 사람 모양이 투명하게 뚫려 있고, 오른쪽 안에 민트(#5DC3AB) 사람.
+  - **반드시 어두운 바탕(`--color-header`) 위에 놓는다.** 흰 바탕에서는 흰 패널과 뚫린 사람이 사라진다. 그래서 헤더·Footer·로딩 화면은 `--color-header` 배경이고, 파비콘은 `--color-header` 사각형 위에 올린다. 흰 바탕 화면(예: 히어로)에는 로고를 두지 않는다.
+  - `TODO(팀)` 로고 원본 디자인 파일(AI·SVG)이 있으면 고해상도용으로 교체.
 
 ## 3. 컴포넌트 목록
 새 컴포넌트가 필요하면 이 목록에 먼저 추가한다.
@@ -115,7 +118,7 @@ bg `#050807` · surface `#0E1613` · surface-2 `#16211C` · line `#24332C` · te
 |---|---|
 | `Button` | primary(민트 배경) · secondary(외곽선) · ghost(텍스트) / size md·lg / 상태 hover·active·disabled·loading |
 | `Header` | GNB. `--color-header` 짙은 초록 배경 고정(2026-11-17 변경, 이전: 투명 → 스크롤 시 블러). 로그인 상태 영역 포함 |
-| `Footer` | 메뉴 + 세계관 카피 + 프로젝트 크레딧 |
+| `Footer` | 메뉴 + 세계관 카피 + 프로젝트 크레딧. `--color-header` 짙은 초록 배경 (로고가 보이도록, 2026-11-17) |
 | `NextStepCTA` | 다음 페이지 제목 + 화살표 라인. 페이지 하단 공통 |
 | `SectionHeader` | 인덱스(01 / 05) + label + 제목 + 설명 |
 | `PhotoSection` | 메인용. 사진 + 텍스트 + 링크, 좌우 배치 교차 (모바일·캡처 모드의 정지 배치) |
@@ -134,6 +137,7 @@ bg `#050807` · surface `#0E1613` · surface-2 `#16211C` · line `#24332C` · te
 | `Bubble` | 커뮤니티 버블 S/M/L |
 | `Hotspot` | 키트 사진 위 번호 포인트 |
 | `Skeleton` | 로딩 상태 |
+| `PhotoFrame` | 사진 자리. 사진이 없으면 회색 플레이스홀더 + "사진 ③", 로드 실패 시 회색 + 대체 텍스트 (CLAUDE.md §6, FEATURES.md §6) |
 
 ## 4. 레이아웃
 - 12컬럼 그리드, gutter 24px, 최대 폭 1440px.
