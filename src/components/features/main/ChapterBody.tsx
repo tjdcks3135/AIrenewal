@@ -37,7 +37,7 @@ function FeelingCount({ count }: { count: CountState }) {
     <StatCounter
       value={count.status === "loading" ? null : count.value}
       format={MAIN_LIVE.feelings}
-      className="text-h3 text-brand-deep"
+      className="text-h3 text-action"
     />
   );
 }
@@ -45,7 +45,7 @@ function FeelingCount({ count }: { count: CountState }) {
 function RecentDiscussions({ list }: { list: ListState<DiscussionPreview> }) {
   return (
     <div className="flex flex-col gap-3">
-      <p className="text-label uppercase text-text-3">{MAIN_LIVE.recentDiscussionsLabel}</p>
+      <p className="text-label tracking-0 text-text-3">{MAIN_LIVE.recentDiscussionsLabel}</p>
       {list.status === "loading" && (
         <div className="flex flex-col gap-3">
           <Skeleton className="h-8 w-full" />
@@ -61,7 +61,7 @@ function RecentDiscussions({ list }: { list: ListState<DiscussionPreview> }) {
             <li key={post.id}>
               <Link
                 href={`/community?post=${post.id}`}
-                className="flex items-baseline justify-between gap-4 py-3 transition-colors duration-fast ease-out hover:text-brand-deep"
+                className="flex items-baseline justify-between gap-4 py-3 transition-colors duration-fast ease-out hover:text-action"
               >
                 <span className="text-body font-semibold">{post.title}</span>
                 <span className="shrink-0 text-caption text-text-3">{timeAgo(post.createdAt)}</span>
@@ -93,13 +93,13 @@ export function ChapterBody({ chapter, index, live, className }: ChapterBodyProp
   return (
     <div className={cn("flex flex-col gap-6", className)}>
       <p className="flex items-center gap-4 text-label uppercase">
-        <span className="text-brand-deep tabular-nums">
+        <span className="text-action tabular-nums">
           {pad(index + 2)} / {pad(TOTAL_SECTIONS)}
         </span>
-        <span className="text-text-2">{LABELS[chapter.key]}</span>
+        <span className="tracking-0 text-text-2">{LABELS[chapter.key]}</span>
       </p>
       <h2 className="text-h2 text-text">{chapter.title}</h2>
-      {chapter.description && <p className="text-body-lg text-text-2">{chapter.description}</p>}
+      {chapter.description && <p className="text-lead text-text-2">{chapter.description}</p>}
       {chapter.key === "grow" && <FeelingCount count={live.feelings} />}
       {chapter.key === "community" && <RecentDiscussions list={live.discussions} />}
       <div>

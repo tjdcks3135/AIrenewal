@@ -72,11 +72,11 @@ export function ToastProvider({ children }: { children: ReactNode }) {
           <div
             key={t.id}
             role={t.tone === "error" ? "alert" : "status"}
-            className="pointer-events-auto flex items-center gap-3 rounded-pill border border-line bg-surface px-5 py-3 text-body text-text shadow-overlay"
+            className="pointer-events-auto flex items-center gap-3 rounded-sm border border-line bg-surface px-5 py-3 text-ui text-text shadow-overlay"
           >
             <span
               aria-hidden
-              className={cn("size-2 shrink-0 rounded-pill", t.tone === "error" ? "bg-danger" : "bg-brand")}
+              className={cn("size-2 shrink-0 rounded-pill", t.tone === "error" ? "bg-danger" : "bg-accent")}
             />
             {t.message}
           </div>

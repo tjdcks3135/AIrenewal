@@ -93,7 +93,7 @@ export function ScrollStory({ chapters, live }: ScrollStoryProps) {
                   <span
                     className={cn(
                       "block h-2 rounded-pill transition-all duration-base ease-out",
-                      i === active ? "w-6 bg-brand-deep" : "w-2 bg-line hover:bg-text-3",
+                      i === active ? "w-6 bg-action" : "w-2 bg-line hover:bg-text-3",
                     )}
                   />
                 </button>

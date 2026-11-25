@@ -6,7 +6,7 @@ import { NEXT_STEP_LABEL, NEXT_STEPS, type NextStepKey } from "@/content/nav";
 
 function ArrowLine() {
   return (
-    <span aria-hidden className="flex min-w-8 flex-1 items-center text-text-3 transition-colors duration-base ease-out group-hover:text-brand-deep">
+    <span aria-hidden className="flex min-w-8 flex-1 items-center text-text-3 transition-colors duration-base ease-out group-hover:text-action">
       <span className="h-px flex-1 bg-current" />
       <svg viewBox="0 0 24 24" className="-ml-1 size-5 shrink-0" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M14 5l7 7-7 7M3 12h18" />
@@ -22,7 +22,7 @@ export function NextStepCTA({ step }: { step: NextStepKey }) {
       <Link href={href} className="group container-page flex flex-col gap-4 py-8 md:py-10">
         <span className="text-label uppercase text-text-3">{NEXT_STEP_LABEL}</span>
         <span className="flex items-center gap-6">
-          <span className="text-h2 text-text transition-colors duration-base ease-out group-hover:text-brand-deep">
+          <span className="text-h2 text-text transition-colors duration-base ease-out group-hover:text-action">
             {title}
           </span>
           <ArrowLine />

@@ -21,16 +21,16 @@ export function Hero() {
 
       <div className="relative container-page flex flex-col gap-6 pt-10 pb-9">
         <p className="flex items-center gap-4 text-label uppercase">
-          <span className="text-brand-deep tabular-nums">01 / {String(TOTAL_SECTIONS).padStart(2, "0")}</span>
-          <span className="text-text-2">{MAIN_HERO.label}</span>
+          <span className="text-action tabular-nums">01 / {String(TOTAL_SECTIONS).padStart(2, "0")}</span>
+          <span className="tracking-0 text-text-2">{MAIN_HERO.label}</span>
         </p>
         <h1 className="text-h1 text-text lg:w-3/4">
           {motto.before}
-          <span className="text-brand-deep">{motto.emphasis}</span>
+          <span className="text-action">{motto.emphasis}</span>
           {motto.after}
         </h1>
         {auth.status === "member" && (
-          <p className="text-body-lg text-text-2">{MAIN_HERO.memberLine(auth.member.memberNo)}</p>
+          <p className="text-lead text-text-2">{MAIN_HERO.memberLine(auth.member.memberNo)}</p>
         )}
         <div>
           <ButtonLink href="/manifesto" size="lg">
