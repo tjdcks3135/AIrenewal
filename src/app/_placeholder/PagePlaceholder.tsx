@@ -6,7 +6,7 @@ export function PagePlaceholder({ title }: { title: string }) {
   return (
     <div className="container-page flex flex-col gap-7 py-9">
       <SectionHeader as="h1" title={title} />
-      <div className="flex h-11 items-center justify-center rounded-lg border border-dashed border-line bg-surface">
+      <div className="flex h-11 items-center justify-center rounded-sm border border-dashed border-line bg-surface">
         <p className="px-5 text-center text-caption text-text-3">{UI_TEXT.todoBody}</p>
       </div>
     </div>

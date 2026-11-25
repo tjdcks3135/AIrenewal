@@ -51,7 +51,7 @@ export function Overlay({ open, onClose, title, children, className }: OverlayPr
         if (e.target === e.currentTarget) onClose();
       }}
       className={cn(
-        "m-auto w-full overflow-y-auto rounded-lg border border-line bg-surface text-text shadow-overlay",
+        "m-auto w-full overflow-y-auto rounded-sm border border-line bg-surface text-text shadow-overlay",
         "backdrop:bg-text/40 sm:w-5/6 lg:w-2/3 xl:w-1/2",
         className,
       )}
@@ -65,7 +65,7 @@ export function Overlay({ open, onClose, title, children, className }: OverlayPr
             type="button"
             onClick={onClose}
             aria-label={UI_TEXT.close}
-            className="-m-2 shrink-0 rounded-pill p-2 text-text-2 transition-colors duration-fast ease-out hover:bg-surface-2 hover:text-text"
+            className="-m-2 shrink-0 rounded-sm p-2 text-text-2 transition-colors duration-fast ease-out hover:bg-surface-2 hover:text-text"
           >
             <svg aria-hidden viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
               <path d="M6 6l12 12M18 6L6 18" />

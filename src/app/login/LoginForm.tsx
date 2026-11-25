@@ -95,7 +95,7 @@ export function LoginForm() {
         {T.toJoinQuestion}{" "}
         <Link
           href={`/join?next=${encodeURIComponent(next)}`}
-          className="font-semibold text-brand-deep underline underline-offset-4"
+          className="font-semibold text-action underline underline-offset-4"
         >
           {T.toJoinLink}
         </Link>

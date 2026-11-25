@@ -18,7 +18,7 @@
   --breakpoint-xl: 1440px;
   --breakpoint-2xl: 1920px;
 
-  /* 컬러 — 기본: bg-bg, bg-surface, text-text-2, border-line, bg-brand … */
+  /* 컬러 — 기본: bg-bg, bg-surface, text-text-2, border-line, bg-action, bg-accent … */
   --color-bg: var(--color-bg);
   --color-surface: var(--color-surface);
   --color-surface-2: var(--color-surface-2);
@@ -26,10 +26,10 @@
   --color-text: var(--color-text);
   --color-text-2: var(--color-text-2);
   --color-text-3: var(--color-text-3);
-  --color-brand: var(--color-brand);
-  --color-brand-strong: var(--color-brand-strong);
-  --color-brand-deep: var(--color-brand-deep);
-  --color-on-brand: var(--color-on-brand);
+  --color-action: var(--color-action);
+  --color-action-strong: var(--color-action-strong);
+  --color-on-action: var(--color-on-action);
+  --color-accent: var(--color-accent);
   --color-danger: var(--color-danger);
   --color-header: var(--color-header);
   --color-on-header: var(--color-on-header);
@@ -61,54 +61,58 @@
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
-  --font-weight-extrabold: 800;
-  --font-weight-black: 900;
 
   --tracking-heading: var(--tracking-heading);
   --tracking-body: var(--tracking-body);
   --tracking-label: var(--tracking-label);
+  --tracking-0: 0em;
 
-  /* 타입 스케일: text-display, text-h1 … text-label (크기+굵기+행간+자간 한 번에) */
+  /* 타입 스케일: text-display … text-label (크기+굵기+행간+자간 한 번에). 크기는 tokens.css 에서 lg 이상 데스크톱 값으로 바뀐다 */
   --text-display: var(--text-display);
   --text-display--font-weight: var(--text-display-weight);
   --text-display--line-height: var(--text-display-leading);
-  --text-display--letter-spacing: var(--tracking-heading);
+  --text-display--letter-spacing: var(--text-display-tracking);
 
   --text-h1: var(--text-h1);
   --text-h1--font-weight: var(--text-h1-weight);
   --text-h1--line-height: var(--text-h1-leading);
-  --text-h1--letter-spacing: var(--tracking-heading);
+  --text-h1--letter-spacing: var(--text-h1-tracking);
 
   --text-h2: var(--text-h2);
   --text-h2--font-weight: var(--text-h2-weight);
   --text-h2--line-height: var(--text-h2-leading);
-  --text-h2--letter-spacing: var(--tracking-heading);
+  --text-h2--letter-spacing: var(--text-h2-tracking);
 
   --text-h3: var(--text-h3);
   --text-h3--font-weight: var(--text-h3-weight);
   --text-h3--line-height: var(--text-h3-leading);
-  --text-h3--letter-spacing: var(--tracking-heading);
+  --text-h3--letter-spacing: var(--text-h3-tracking);
 
-  --text-body-lg: var(--text-body-lg);
-  --text-body-lg--font-weight: var(--text-body-lg-weight);
-  --text-body-lg--line-height: var(--text-body-lg-leading);
-  --text-body-lg--letter-spacing: var(--tracking-body);
+  --text-lead: var(--text-lead);
+  --text-lead--font-weight: var(--text-lead-weight);
+  --text-lead--line-height: var(--text-lead-leading);
+  --text-lead--letter-spacing: var(--text-lead-tracking);
 
   --text-body: var(--text-body);
   --text-body--font-weight: var(--text-body-weight);
   --text-body--line-height: var(--text-body-leading);
-  --text-body--letter-spacing: var(--tracking-body);
+  --text-body--letter-spacing: var(--text-body-tracking);
+
+  --text-ui: var(--text-ui);
+  --text-ui--font-weight: var(--text-ui-weight);
+  --text-ui--line-height: var(--text-ui-leading);
+  --text-ui--letter-spacing: var(--text-ui-tracking);
 
   --text-caption: var(--text-caption);
   --text-caption--font-weight: var(--text-caption-weight);
   --text-caption--line-height: var(--text-caption-leading);
-  --text-caption--letter-spacing: var(--tracking-body);
+  --text-caption--letter-spacing: var(--text-caption-tracking);
 
-  /* label 은 대문자로 쓴다: class="text-label uppercase" */
+  /* label 은 짧은 영문 대문자: class="text-label uppercase" (한글 라벨은 tracking-0 으로 자간 0) */
   --text-label: var(--text-label);
   --text-label--font-weight: var(--text-label-weight);
   --text-label--line-height: var(--text-label-leading);
-  --text-label--letter-spacing: var(--tracking-label);
+  --text-label--letter-spacing: var(--text-label-tracking);
 
   /* 간격: p-1(4) … p-11(192). gap/margin/size 유틸리티 공통. 0 은 초기화용(inset-0, p-0 등) */
   --spacing-0: 0px;
@@ -124,18 +128,19 @@
   --spacing-10: var(--space-10);
   --spacing-11: var(--space-11);
   --spacing-gutter: var(--grid-gutter);
+  /* 컨트롤 높이: h-control-sm(40) · h-control-md(44) · h-control-lg(52) */
+  --spacing-control-sm: var(--control-sm);
+  --spacing-control-md: var(--control-md);
+  --spacing-control-lg: var(--control-lg);
 
   /* 콘텐츠 최대 폭: max-w-content */
   --container-content: var(--content-max);
 
-  /* Radius: rounded-sm/md/lg/pill */
+  /* Radius: rounded-sm(4px, 거의 모든 곳) · rounded-pill(점·막대 같은 작은 도형) */
   --radius-sm: var(--radius-sm);
-  --radius-md: var(--radius-md);
-  --radius-lg: var(--radius-lg);
   --radius-pill: var(--radius-pill);
 
-  /* 그림자: shadow-glow, shadow-overlay */
-  --shadow-glow: var(--shadow-glow);
+  /* 그림자: shadow-overlay (모달 전용) */
   --shadow-overlay: var(--shadow-overlay);
 
   /* 이징: ease-out, ease-in-out */
@@ -195,11 +200,11 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-brand-deep);
+    outline: 2px solid var(--color-action);
     outline-offset: 2px;
   }
 
-  /* 짙은 초록 헤더 안에서는 포커스 표시를 흰색으로 */
+  /* 회녹색 헤더·Footer 안에서는 포커스 표시를 밝은 색으로 */
   [data-surface="header"] :focus-visible {
     outline-color: var(--color-on-header);
   }

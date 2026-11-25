@@ -4,8 +4,9 @@ import { useId, type ComponentProps, type ReactNode } from "react";
 import { UI_TEXT } from "@/content/ui";
 import { cn } from "@/lib/cn";
 
-// DESIGN.md §3 TextField / TextArea — 라벨, 도움말, 오류 메시지, 글자 수 카운터
-// 검증 규칙과 문구는 FEATURES.md §6 (입력칸 아래 빨간 안내)
+// DESIGN.md §3 TextField / TextArea — 피그마 OPUS Common UI "Input" (node 173:302)
+// 라벨(12px 500) + 입력칸(48px, 안쪽 12px, 1px 테두리, Paper White) + 도움말(12px), 모서리 4px.
+// 포커스 시 회녹색 테두리, 비활성은 Silver Gray. 오류는 빨간 테두리·문구(사이트 추가분, FEATURES.md §6).
 
 type FieldFrameProps = {
   id: string;
@@ -22,10 +23,10 @@ function FieldFrame({ id, label, required, help, error, count, children }: Field
   const over = count ? count.current > count.max : false;
   return (
     <div className="flex flex-col gap-2">
-      <label htmlFor={id} className="text-body font-semibold text-text">
+      <label htmlFor={id} className="text-caption font-medium text-text">
         {label}
         {required && (
-          <span className="ml-1 text-brand-deep" aria-hidden>
+          <span className="ml-1 text-action" aria-hidden>
             *
           </span>
         )}
@@ -52,12 +53,12 @@ function FieldFrame({ id, label, required, help, error, count, children }: Field
 }
 
 const CONTROL =
-  "w-full rounded-sm border bg-surface px-4 py-3 text-body text-text placeholder:text-text-3 " +
+  "w-full rounded-sm border bg-surface px-3 text-body text-text placeholder:text-text-2 " +
   "transition-colors duration-fast ease-out " +
-  "focus:border-brand-deep disabled:cursor-not-allowed disabled:text-text-3";
+  "focus:border-action disabled:cursor-not-allowed disabled:bg-surface-2 disabled:text-text-2";
 
 function controlClasses(invalid: boolean, className?: string) {
-  return cn(CONTROL, invalid ? "border-danger" : "border-line hover:enabled:border-text-3", className);
+  return cn(CONTROL, invalid ? "border-danger" : "border-line hover:enabled:border-text-2", className);
 }
 
 type CommonProps = {
@@ -101,7 +102,7 @@ export function TextField({
         value={value}
         aria-invalid={error ? true : undefined}
         aria-describedby={help || error ? `${fieldId}-desc` : undefined}
-        className={controlClasses(Boolean(error), className)}
+        className={controlClasses(Boolean(error), cn("h-7", className))}
         {...rest}
       />
     </FieldFrame>
@@ -143,7 +144,7 @@ export function TextArea({
         rows={rows}
         aria-invalid={error ? true : undefined}
         aria-describedby={help || error ? `${fieldId}-desc` : undefined}
-        className={controlClasses(Boolean(error), cn("resize-y", className))}
+        className={controlClasses(Boolean(error), cn("resize-y py-3", className))}
         {...rest}
       />
     </FieldFrame>

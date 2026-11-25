@@ -3,39 +3,43 @@ import type { ComponentProps, ReactNode } from "react";
 import { UI_TEXT } from "@/content/ui";
 import { cn } from "@/lib/cn";
 
-// DESIGN.md §3 Button — primary(민트 배경) · secondary(외곽선) · ghost(텍스트) / md·lg
+// DESIGN.md §3 Button — 피그마 OPUS Common UI "Button" (node 173:266)
+// primary(회녹색 + Paper White, 호버 차콜) · secondary(Paper White + 1px 테두리) · ghost(텍스트, 사이트 추가분)
+// size: md = 피그마 Small(40px), lg = 피그마 Large(52px). 좌우 16px, 모서리 4px, 글자 ui(14px 500).
+// 포커스는 전역 :focus-visible 테두리(회녹색)로 표시한다.
 
 export type ButtonVariant = "primary" | "secondary" | "ghost";
 export type ButtonSize = "md" | "lg";
 
 const BASE =
-  "inline-flex items-center justify-center gap-2 rounded-pill whitespace-nowrap " +
+  "inline-flex items-center justify-center gap-2 rounded-sm text-ui whitespace-nowrap " +
   "transition-colors duration-fast ease-out select-none " +
   "disabled:cursor-not-allowed aria-disabled:cursor-not-allowed aria-disabled:pointer-events-none";
 
 const VARIANTS: Record<ButtonVariant, string> = {
   primary:
-    "bg-brand text-on-brand hover:bg-brand-strong active:bg-brand-strong hover:shadow-glow " +
-    "disabled:bg-surface-2 disabled:text-text-3 disabled:shadow-none " +
-    "aria-disabled:bg-surface-2 aria-disabled:text-text-3",
+    "bg-action text-on-action hover:bg-action-strong active:bg-action-strong " +
+    "disabled:bg-surface-2 disabled:text-text-2 disabled:hover:bg-surface-2 " +
+    "aria-disabled:bg-surface-2 aria-disabled:text-text-2",
+  // 피그마 secondary 는 호버가 기본과 같다. 사이트에서는 포커스와 같은 회녹색 테두리로 호버를 알린다.
   secondary:
-    "border border-text-2 text-text hover:border-brand-deep hover:text-brand-deep active:bg-surface-2 " +
-    "disabled:border-line disabled:text-text-3 disabled:hover:text-text-3 " +
-    "aria-disabled:border-line aria-disabled:text-text-3",
+    "border border-line bg-surface text-text hover:border-action active:border-action " +
+    "disabled:bg-surface-2 disabled:text-text-2 disabled:hover:border-line " +
+    "aria-disabled:bg-surface-2 aria-disabled:text-text-2",
   ghost:
-    "text-text-2 hover:text-text active:text-brand-deep " +
+    "text-text-2 hover:text-text active:text-action " +
     "disabled:text-text-3 disabled:hover:text-text-3 aria-disabled:text-text-3",
 };
 
 const SIZES: Record<ButtonSize, string> = {
-  md: "px-5 py-3 text-body font-semibold",
-  lg: "px-6 py-4 text-body-lg font-bold",
+  md: "h-control-sm px-4",
+  lg: "h-control-lg px-4",
 };
 
 // ghost 는 텍스트 버튼이므로 좌우 패딩을 줄인다
 const GHOST_SIZES: Record<ButtonSize, string> = {
-  md: "px-2 py-3 text-body font-semibold",
-  lg: "px-3 py-4 text-body-lg font-bold",
+  md: "h-control-sm px-2",
+  lg: "h-control-lg px-2",
 };
 
 export function buttonClasses({

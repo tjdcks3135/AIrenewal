@@ -23,15 +23,16 @@ export function SectionHeader({ index, label, title, description, as = "h2", cla
       {(index || label) && (
         <p className="flex items-center gap-4 text-label uppercase">
           {index && (
-            <span className="text-brand-deep tabular-nums">
+            <span className="text-action tabular-nums">
               {pad(index.current)} / {pad(index.total)}
             </span>
           )}
-          {label && <span className="text-text-2">{label}</span>}
+          {/* 한글 라벨은 자간 0% (피그마 Typography 규칙) */}
+          {label && <span className="tracking-0 text-text-2">{label}</span>}
         </p>
       )}
       <Heading className={cn("text-text", as === "h1" ? "text-h1" : "text-h2")}>{title}</Heading>
-      {description && <p className="text-body-lg text-text-2 lg:w-2/3">{description}</p>}
+      {description && <p className="text-lead text-text-2 lg:w-2/3">{description}</p>}
     </div>
   );
 }

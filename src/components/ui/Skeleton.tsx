@@ -9,8 +9,8 @@ type SkeletonProps = ComponentProps<"div"> & {
 };
 
 const SHAPES = {
-  block: "rounded-md",
-  pill: "rounded-pill",
+  block: "rounded-sm",
+  pill: "rounded-sm",
   circle: "rounded-pill aspect-square",
 } as const;
 

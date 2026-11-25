@@ -1,29 +1,29 @@
 /*
- * 디자인 토큰 — docs/DESIGN.md §1 의 값을 그대로 옮긴 단일 원본.
+ * 디자인 토큰 — docs/DESIGN.md §1 의 값을 그대로 옮긴 단일 원본 (기준: 피그마 OPUS Foundations).
  * 이 파일에 없는 값은 쓰지 않는다. 값을 바꾸려면 DESIGN.md 를 먼저 고친다.
  * Tailwind 연결은 globals.css 의 @theme inline 블록에서 한다.
  */
 
 :root {
-  /* ── 1.1 컬러 — 기본 (화이트 베이스) ─────────────────── */
-  --color-bg: #ffffff;
-  --color-surface: #f4f7f6;
-  --color-surface-2: #e9efec;
-  --color-line: #d6e0dc;
-  --color-text: #0a0f0d;
-  --color-text-2: #43514b;
-  --color-text-3: #6b7a73;
-  --color-brand: #5dc3ab; /* 로고 민트. 면(버튼 배경·활성 표시)에만. 흰 배경 위 글자색 금지 */
-  --color-brand-strong: #54b09a;
-  --color-brand-deep: #006548; /* 강조 글자·포커스 */
-  --color-on-brand: #000000;
-  --color-danger: #d63a2b;
-  --color-header: var(--color-brand-deep); /* 헤더(GNB) 배경 */
-  --color-on-header: #ffffff;
-  --color-on-header-2: #b9ddd3;
+  /* ── 1.1 컬러 — 기본 (피그마 OPUS · Gray-led palette) ─────── */
+  --color-bg: #edeeee; /* color/bg/primary — Light Gray */
+  --color-surface: #fafaf9; /* color/bg/surface — Paper White */
+  --color-surface-2: #dfe2e1; /* color/bg/section — Silver Gray */
+  --color-line: #c7ceca; /* color/border/default — Cool Gray */
+  --color-text: #252a28; /* color/text/primary — Charcoal */
+  --color-text-2: #646c68; /* color/text/secondary — Medium Gray */
+  --color-text-3: #7e8682; /* 피그마에 없음 — 비활성·placeholder */
+  --color-action: #465a50; /* color/action/primary — Gray Green */
+  --color-action-strong: #252a28; /* 주요 버튼 호버 (= text/primary) */
+  --color-on-action: #fafaf9; /* 회녹색 위 글자 (= bg/surface) */
+  --color-accent: #83cdb5; /* color/accent/mint — Soft Mint. 면·도형에만, 글자색 금지 */
+  --color-danger: #b3261e; /* 피그마에 없음 — 오류 */
+  --color-header: var(--color-action); /* 헤더·Footer·로딩 화면 배경 */
+  --color-on-header: #fafaf9;
+  --color-on-header-2: #c7ceca;
 
   /* ── 1.2 컬러 — 커뮤니티 카테고리 ─────────────────── */
-  --cat-discussion: #5dc3ab; /* 키움 토론 */
+  --cat-discussion: #83cdb5; /* 키움 토론 (= accent) */
   --cat-today: #c79bff; /* 오늘의 마음 */
   --cat-kit: #ddebe4; /* 생존키트 */
   --cat-meetup: #ffd45c; /* 만남 제안 */
@@ -38,46 +38,60 @@
   --emo-fear: #a08fb5; /* 두려움 */
   --emo-anger: #ff6b5c; /* 분노 */
 
-  /* ── 1.4 타이포그래피 ───────────────────────────── */
+  /* ── 1.4 타이포그래피 (피그마 OPUS Foundations) ─────────── */
+  /* 크기는 모바일 값. 데스크톱(lg 1024px 이상) 값은 파일 아래 @media 블록 */
   --font-family-base:
     "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
     "Segoe UI", sans-serif;
 
-  --tracking-heading: -0.03em;
+  --tracking-heading: -0.02em;
   --tracking-body: -0.01em;
-  --tracking-label: 0.2em;
+  --tracking-label: 0.1em;
 
-  --text-display: clamp(64px, 9vw, 160px);
-  --text-display-weight: 900;
-  --text-display-leading: 1;
+  --text-display: 56px;
+  --text-display-weight: 700;
+  --text-display-leading: 1.05;
+  --text-display-tracking: -0.02em; /* 한글 Display (영문은 피그마 -4%) */
 
-  --text-h1: clamp(44px, 5.5vw, 96px);
-  --text-h1-weight: 800;
-  --text-h1-leading: 1.1;
+  --text-h1: 36px;
+  --text-h1-weight: 600;
+  --text-h1-leading: 1.15;
+  --text-h1-tracking: -0.03em;
 
-  --text-h2: clamp(32px, 3.5vw, 56px);
-  --text-h2-weight: 800;
-  --text-h2-leading: 1.15;
+  --text-h2: 28px;
+  --text-h2-weight: 600;
+  --text-h2-leading: 1.25;
+  --text-h2-tracking: -0.02em;
 
-  --text-h3: clamp(22px, 2vw, 28px);
-  --text-h3-weight: 700;
-  --text-h3-leading: 1.3;
+  --text-h3: 20px;
+  --text-h3-weight: 600;
+  --text-h3-leading: 1.35;
+  --text-h3-tracking: -0.01em;
 
-  --text-body-lg: 20px;
-  --text-body-lg-weight: 500;
-  --text-body-lg-leading: 1.6;
+  --text-lead: 20px;
+  --text-lead-weight: 500;
+  --text-lead-leading: 1.55;
+  --text-lead-tracking: -0.01em;
 
-  --text-body: 17px;
+  --text-body: 16px;
   --text-body-weight: 400;
   --text-body-leading: 1.7;
+  --text-body-tracking: -0.01em;
 
-  --text-caption: 14px;
+  --text-ui: 14px;
+  --text-ui-weight: 500;
+  --text-ui-leading: 1.45;
+  --text-ui-tracking: 0em;
+
+  --text-caption: 12px;
   --text-caption-weight: 400;
   --text-caption-leading: 1.5;
+  --text-caption-tracking: 0em;
 
-  --text-label: 12px; /* 최소 글자 크기. 12px 미만 금지 */
-  --text-label-weight: 600;
+  --text-label: 12px; /* 피그마 11px → 12px (12px 미만 금지 규칙) */
+  --text-label-weight: 500;
   --text-label-leading: 1.4;
+  --text-label-tracking: 0.1em;
 
   /* ── 1.5 간격 (4px 단위) ─────────────────────────── */
   --space-1: 4px;
@@ -99,14 +113,16 @@
   --grid-columns: 12;
   --grid-gutter: 24px;
 
-  /* ── 1.6 Radius · 그림자 · 모션 ───────────────────── */
-  --radius-sm: 8px;
-  --radius-md: 16px;
-  --radius-lg: 32px;
-  --radius-pill: 999px;
+  /* 컨트롤 높이 (피그마 Common UI): 버튼 Small · 탭 · 버튼 Large */
+  --control-sm: 40px;
+  --control-md: 44px;
+  --control-lg: 52px;
 
-  --shadow-glow: 0 0 40px rgba(93, 195, 171, 0.25);
-  --shadow-overlay: 0 24px 80px rgba(10, 15, 13, 0.16);
+  /* ── 1.6 Radius · 그림자 · 모션 ───────────────────── */
+  --radius-sm: 4px; /* 피그마 radius/small — 버튼·입력칸·카드·탭·배지·오버레이 */
+  --radius-pill: 999px; /* 점·진행 막대 같은 작은 도형에만 */
+
+  --shadow-overlay: 0 24px 80px rgba(37, 42, 40, 0.16); /* 모달 전용 */
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
@@ -115,4 +131,15 @@
   --dur-base: 300ms;
   --dur-slow: 600ms;
   --dur-breath: 1200ms;
+}
+
+/* 데스크톱 글자 크기 (피그마 Desktop 값, lg 1024px 이상) */
+@media (min-width: 1024px) {
+  :root {
+    --text-display: 112px;
+    --text-h1: 64px;
+    --text-h2: 40px;
+    --text-h3: 24px;
+    --text-lead: 24px;
+  }
 }

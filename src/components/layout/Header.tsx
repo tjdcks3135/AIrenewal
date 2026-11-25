@@ -12,14 +12,14 @@ import { signOut } from "@/lib/auth";
 import { cn } from "@/lib/cn";
 import { Logo } from "./Logo";
 
-// DESIGN.md §3 Header — GNB. 짙은 초록(--color-header) 배경 고정. 로그인 상태 영역 포함 (IA.md §5)
+// DESIGN.md §3 Header — GNB. 회녹색(--color-header) 배경 고정. 로그인 상태 영역 포함 (IA.md §5)
 // TODO(온보딩 단계): 로고 길게 누르기 → /intro (FEATURES.md §2)
 
 function isActive(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
-/** GNB 우측: [가입하기] 또는 "No.#3903 ○○○" + 로그아웃 (IA.md §5) */
+/** GNB 우측: [가입하기] 또는 "No.#3903 ○○○" + 로그아웃 (IA.md §5). 회녹색 헤더 위라 밝은 secondary 버튼을 쓴다 */
 function MemberSlot({ size, onNavigate }: { size: "md" | "lg"; onNavigate?: () => void }) {
   const auth = useAuth();
 
@@ -29,7 +29,7 @@ function MemberSlot({ size, onNavigate }: { size: "md" | "lg"; onNavigate?: () =
 
   if (auth.status === "guest") {
     return (
-      <ButtonLink href="/join" size={size} className={size === "lg" ? "w-full" : undefined} onClick={onNavigate}>
+      <ButtonLink href="/join" variant="secondary" size={size} className={size === "lg" ? "w-full" : undefined} onClick={onNavigate}>
         {NAV_TEXT.join}
       </ButtonLink>
     );
@@ -38,7 +38,7 @@ function MemberSlot({ size, onNavigate }: { size: "md" | "lg"; onNavigate?: () =
   const { memberNo, displayName } = auth.member;
   return (
     <div className={cn("flex items-center gap-4", size === "lg" && "justify-between")}>
-      <span className={cn("font-semibold whitespace-nowrap text-on-header", size === "lg" ? "text-body-lg" : "text-body")}>
+      <span className={cn("font-semibold whitespace-nowrap text-on-header", size === "lg" ? "text-lead" : "text-body")}>
         {AUTH_TEXT.member.badge(memberNo, displayName)}
       </span>
       <button
@@ -47,7 +47,7 @@ function MemberSlot({ size, onNavigate }: { size: "md" | "lg"; onNavigate?: () =
           onNavigate?.();
           void signOut();
         }}
-        className="rounded-pill px-3 py-2 text-body text-on-header-2 underline-offset-4 transition-colors duration-fast ease-out hover:text-on-header hover:underline"
+        className="rounded-sm px-3 py-2 text-ui text-on-header-2 underline-offset-4 transition-colors duration-fast ease-out hover:text-on-header hover:underline"
       >
         {AUTH_TEXT.member.logout}
       </button>
@@ -75,13 +75,13 @@ export function Header() {
                     href={item.href}
                     aria-current={active ? "page" : undefined}
                     className={cn(
-                      "relative py-2 text-body font-semibold transition-colors duration-fast ease-out",
+                      "relative py-2 text-ui transition-colors duration-fast ease-out",
                       active ? "text-on-header" : "text-on-header-2 hover:text-on-header",
                     )}
                   >
                     {item.label}
                     {active && (
-                      <span aria-hidden className="absolute inset-x-0 -bottom-1 h-1 rounded-pill bg-brand" />
+                      <span aria-hidden className="absolute inset-x-0 -bottom-1 h-1 rounded-pill bg-accent" />
                     )}
                   </Link>
                 </li>
@@ -102,7 +102,7 @@ export function Header() {
             aria-controls="mobile-menu"
             aria-label={menuOpen ? NAV_TEXT.menuClose : NAV_TEXT.menuOpen}
             onClick={() => setMenuOpen((v) => !v)}
-            className="-mr-2 rounded-pill p-2 text-on-header lg:hidden"
+            className="-mr-2 rounded-sm p-2 text-on-header lg:hidden"
           >
             <svg aria-hidden viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
               {menuOpen ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
@@ -123,7 +123,7 @@ export function Header() {
                     href={item.href}
                     aria-current={active ? "page" : undefined}
                     onClick={() => setMenuOpen(false)}
-                    className={cn("block py-3 text-h3", active ? "text-brand" : "text-on-header")}
+                    className={cn("block py-3 text-h3", active ? "text-on-header underline decoration-accent decoration-2 underline-offset-8" : "text-on-header-2")}
                   >
                     {item.label}
                   </Link>
