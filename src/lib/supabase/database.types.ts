@@ -34,11 +34,13 @@ export type Database = {
           id: string;
           user_id: string;
           emotion: Emotion;
+          /** 사용자가 고른 색상 0~359 (migrations/20261127000000_feeling_hue.sql) */
+          hue: number;
           body: string;
           is_seed: boolean;
           created_at: string;
         };
-        Insert: { emotion: Emotion; body: string };
+        Insert: { emotion: Emotion; hue: number; body: string };
         Update: never;
         Relationships: [
           { foreignKeyName: "feelings_user_id_fkey"; columns: ["user_id"]; referencedRelation: "profiles"; referencedColumns: ["id"] },

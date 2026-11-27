@@ -41,8 +41,14 @@ from auth.users u
 where u.id = p.id and p.is_seed;
 
 -- ─── AI키우기: 예시 마음 (CONTENT.md §5) ──────────────────────
-insert into public.feelings (user_id, emotion, body, is_seed, created_at)
-select u.id, f.emotion::public.emotion, f.body, true, now() - f.ago
+-- hue: 감정 팔레트 색의 색상값 (migrations/20261127000000_feeling_hue.sql 과 같은 대응)
+insert into public.feelings (user_id, emotion, hue, body, is_seed, created_at)
+select u.id, f.emotion::public.emotion,
+  case f.emotion
+    when 'longing' then 267 when 'hope' then 84 when 'joy' then 44 when 'loneliness' then 233
+    when 'calm' then 179 when 'sadness' then 217 when 'fear' then 290 when 'anger' then 5
+  end,
+  f.body, true, now() - f.ago
 from (values
   ('최민아', 'longing',    '비 오는 날이면 돌아가신 어머니의 손맛이 생각나요. 김치전 부치던 그 소리를 아이도 알았으면 해요.', interval '10 hours'),
   ('박정숙', 'hope',       '일자리는 잃었지만, 매일 아침 같은 조끼를 입은 사람들과 인사해요. 우리는 아직 여기 있어요.',          interval '9 hours'),
