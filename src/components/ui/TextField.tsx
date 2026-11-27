@@ -53,12 +53,20 @@ function FieldFrame({ id, label, required, help, error, count, children }: Field
 }
 
 const CONTROL =
-  "w-full rounded-sm border bg-surface px-3 text-body text-text placeholder:text-text-2 " +
+  "w-full rounded-sm border px-3 text-body text-text placeholder:text-text-2 " +
   "transition-colors duration-fast ease-out " +
   "focus:border-action disabled:cursor-not-allowed disabled:bg-surface-2 disabled:text-text-2";
 
-function controlClasses(invalid: boolean, className?: string) {
-  return cn(CONTROL, invalid ? "border-danger" : "border-line hover:enabled:border-text-2", className);
+/** solid: 기본(Paper White) / glass: 안개 위 유리 패널 안 — 바탕 없이 테두리만 (DESIGN.md §1.6 --blur-glass) */
+export type FieldSurface = "solid" | "glass";
+
+function controlClasses(invalid: boolean, surface: FieldSurface, className?: string) {
+  return cn(
+    CONTROL,
+    surface === "glass" ? "bg-transparent" : "bg-surface",
+    invalid ? "border-danger" : "border-line hover:enabled:border-text-2",
+    className,
+  );
 }
 
 type CommonProps = {
@@ -67,6 +75,7 @@ type CommonProps = {
   error?: ReactNode;
   /** true 이면 maxLength 기준 카운터를 표시 */
   showCount?: boolean;
+  surface?: FieldSurface;
 };
 
 type TextFieldProps = Omit<ComponentProps<"input">, "id"> & CommonProps & { id?: string };
@@ -80,6 +89,7 @@ export function TextField({
   required,
   maxLength,
   value,
+  surface = "solid",
   className,
   ...rest
 }: TextFieldProps) {
@@ -102,7 +112,7 @@ export function TextField({
         value={value}
         aria-invalid={error ? true : undefined}
         aria-describedby={help || error ? `${fieldId}-desc` : undefined}
-        className={controlClasses(Boolean(error), cn("h-7", className))}
+        className={controlClasses(Boolean(error), surface, cn("h-7", className))}
         {...rest}
       />
     </FieldFrame>
@@ -121,6 +131,7 @@ export function TextArea({
   maxLength,
   value,
   rows = 4,
+  surface = "solid",
   className,
   ...rest
 }: TextAreaProps) {
@@ -144,7 +155,7 @@ export function TextArea({
         rows={rows}
         aria-invalid={error ? true : undefined}
         aria-describedby={help || error ? `${fieldId}-desc` : undefined}
-        className={controlClasses(Boolean(error), cn("resize-y py-3", className))}
+        className={controlClasses(Boolean(error), surface, cn("resize-y py-3", className))}
         {...rest}
       />
     </FieldFrame>

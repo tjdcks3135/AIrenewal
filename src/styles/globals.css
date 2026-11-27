@@ -139,6 +139,7 @@
   /* Radius: rounded-sm(4px, 거의 모든 곳) · rounded-pill(점·막대 같은 작은 도형) */
   --radius-sm: var(--radius-sm);
   --radius-pill: var(--radius-pill);
+  --radius-glass: var(--radius-glass);
 
   /* 그림자: shadow-overlay (모달 전용) */
   --shadow-overlay: var(--shadow-overlay);
@@ -162,6 +163,47 @@
 }
 @utility duration-breath {
   transition-duration: var(--dur-breath);
+}
+
+/* 뒤 흐림: 안개 위 유리 패널 (AI키우기 입력창, DESIGN.md §1.6 --blur-glass) */
+@utility backdrop-blur-glass {
+  -webkit-backdrop-filter: blur(var(--blur-glass));
+  backdrop-filter: blur(var(--blur-glass));
+}
+
+/* 색상 띠: 마음의 색 고르기 (DESIGN.md §1.3). 손잡이 색은 --hue-thumb 로 지금 고른 색을 받는다 */
+@utility hue-slider {
+  appearance: none;
+  height: var(--space-3);
+  border-radius: var(--radius-pill);
+  background: linear-gradient(
+    to right,
+    hsl(0 var(--feeling-saturation) var(--feeling-lightness)),
+    hsl(60 var(--feeling-saturation) var(--feeling-lightness)),
+    hsl(120 var(--feeling-saturation) var(--feeling-lightness)),
+    hsl(180 var(--feeling-saturation) var(--feeling-lightness)),
+    hsl(240 var(--feeling-saturation) var(--feeling-lightness)),
+    hsl(300 var(--feeling-saturation) var(--feeling-lightness)),
+    hsl(360 var(--feeling-saturation) var(--feeling-lightness))
+  );
+  cursor: pointer;
+  &::-webkit-slider-thumb {
+    appearance: none;
+    width: var(--space-5);
+    height: var(--space-5);
+    border-radius: var(--radius-pill);
+    background: var(--hue-thumb, var(--color-surface));
+    border: 3px solid var(--color-surface);
+    box-shadow: 0 0 0 1px var(--color-line);
+  }
+  &::-moz-range-thumb {
+    width: var(--space-5);
+    height: var(--space-5);
+    border-radius: var(--radius-pill);
+    background: var(--hue-thumb, var(--color-surface));
+    border: 3px solid var(--color-surface);
+    box-shadow: 0 0 0 1px var(--color-line);
+  }
 }
 
 /* 숨쉬기 펄스: 로딩 상태(Skeleton, Button loading) 공통. --dur-breath 주기 */

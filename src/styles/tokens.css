@@ -38,6 +38,10 @@
   --emo-fear: #a08fb5; /* 두려움 */
   --emo-anger: #ff6b5c; /* 분노 */
 
+  /* 마음의 색 (DESIGN.md §1.3) — 사용자가 고른 색상(hue) + 고정 채도·밝기 */
+  --feeling-saturation: 80%;
+  --feeling-lightness: 70%;
+
   /* ── 1.4 타이포그래피 (피그마 OPUS Foundations) ─────────── */
   /* 크기는 모바일 값. 데스크톱(lg 1024px 이상) 값은 파일 아래 @media 블록 */
   --font-family-base:
@@ -121,8 +125,10 @@
   /* ── 1.6 Radius · 그림자 · 모션 ───────────────────── */
   --radius-sm: 4px; /* 피그마 radius/small — 버튼·입력칸·카드·탭·배지·오버레이 */
   --radius-pill: 999px; /* 점·진행 막대 같은 작은 도형에만 */
+  --radius-glass: 16px; /* 안개 위 유리 패널 (AI키우기 입력창) */
 
   --shadow-overlay: 0 24px 80px rgba(37, 42, 40, 0.16); /* 모달 전용 */
+  --blur-glass: 24px; /* 안개 위 유리 패널 (AI키우기 입력창) */
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);

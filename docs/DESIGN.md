@@ -79,7 +79,14 @@ bg `#FFFFFF` · surface `#F4F7F6` · surface-2 `#E9EFEC` · line `#D6E0DC` · te
 | 두려움 | `--emo-fear` | `#A08FB5` |
 | 분노 | `--emo-anger` | `#FF6B5C` |
 
-아이(AI)의 색, 감정 칩, 성장 기록 그래프가 모두 이 팔레트를 공유한다.
+~~아이(AI)의 색, 감정 칩, 성장 기록 그래프가 모두 이 팔레트를 공유한다.~~ → 2026-11-27부터 마음의 색은 **사용자가 고른 색상(hue)** 이다 (아래). 이 팔레트는 예시 마음의 색을 옮길 때 기준으로만 남긴다.
+
+**마음의 색 (2026-11-27 추가)**: 사용자가 색상 띠에서 색상(0~359°)만 고른다. 채도·밝기는 고정해 어떤 색을 골라도 안개가 탁해지지 않고 글이 읽힌다.
+| 토큰 | 값 | 용도 |
+|---|---|---|
+| `--feeling-saturation` | `80%` | 마음 색의 채도 (고정) |
+| `--feeling-lightness` | `70%` | 마음 색의 밝기 (고정) |
+마음 색 = `hsl(색상, --feeling-saturation, --feeling-lightness)`. 안개의 색·안개 속 점·입력창 색상 띠가 모두 이 규칙을 쓴다.
 
 ### 1.4 타이포그래피 (피그마 OPUS Foundations)
 - 폰트: **Pretendard** (한글·영문 공통). 대체: `-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`
@@ -118,8 +125,10 @@ bg `#FFFFFF` · surface `#F4F7F6` · surface-2 `#E9EFEC` · line `#D6E0DC` · te
 |---|---|
 | `--radius-sm` | 4px — 피그마 radius/small. 버튼·입력칸·카드·탭·배지·체크박스·오버레이 **모두** |
 | `--radius-pill` | 999px — 점·진행 막대 같은 작은 도형에만 (버튼·칩에는 쓰지 않음) |
+| `--radius-glass` | 16px — 안개 위 유리 패널(AI키우기 입력창)에만. 각진 박스보다 안개에 부드럽게 어울리도록 (2026-11-27 추가, 피그마에 없음) |
 | 테두리 | 1px (피그마 border-1) |
 | `--shadow-overlay` | `0 24px 80px rgba(37,42,40,0.16)` (모달 전용, 피그마에 없음) |
+| `--blur-glass` | `24px` — 안개 위 유리 패널의 뒤 흐림 (AI키우기 입력창, 2026-11-27 추가, 피그마에 없음). 바탕은 `--color-bg` 55% + `--color-line` 테두리 — 흰 박스 대신 안개에 녹아드는 반투명 면 |
 | `--ease-out` | `cubic-bezier(0.16, 1, 0.3, 1)` |
 | `--ease-in-out` | `cubic-bezier(0.76, 0, 0.24, 1)` |
 | `--dur-fast` / `-base` / `-slow` / `-breath` | 150ms / 300ms / 600ms / 1200ms |
@@ -155,14 +164,15 @@ bg `#FFFFFF` · surface `#F4F7F6` · surface-2 `#E9EFEC` · line `#D6E0DC` · te
 | `Badge` | 피그마 Badge. neutral(Silver Gray) · active(민트) · outline(1px 테두리) / 높이 32px · 12px 500 |
 | `Checkbox` | 피그마 Checkbox. 24px 상자(1px 테두리, 체크 시 회녹색 + ✓) + `ui` 글자 라벨 / 비활성. 가입 서약 등 |
 | `ContentCard` | 피그마 Content card — Community 형만 (Archive 형은 범위 밖). Paper White + 1px 테두리, 라벨·제목(h3)·요약·날짜/링크. 커뮤니티 페이지에서 사용 여부 결정 |
-| `TextField` / `TextArea` | 피그마 Input. 라벨(12px 500) + 입력칸(48px, 안쪽 12px, 1px 테두리, Paper White, 포커스 시 회녹색 테두리, 비활성 Silver Gray) + 도움말(12px). 오류는 빨간 테두리·문구(사이트 추가분) + 글자 수 카운터 |
+| `TextField` / `TextArea` | 피그마 Input. 라벨(12px 500) + 입력칸(48px, 안쪽 12px, 1px 테두리, Paper White, 포커스 시 회녹색 테두리, 비활성 Silver Gray) + 도움말(12px). 오류는 빨간 테두리·문구(사이트 추가분) + 글자 수 카운터. `surface="glass"`: 유리 패널 안에서 바탕 없이 테두리만 (2026-11-27) |
 | `Stepper` | 가입 단계 표시 |
 | `Overlay` | 모달·글 상세. 배경 딤 + `--radius-sm` |
 | `Toast` | 성공/오류 알림, 3초 |
 | `AuthGate` | "조합원만 할 수 있어요" 안내 + 가입/로그인 버튼 |
 | `MemberCard` | 조합원 번호 카드 (가입 완료, 캡처용) |
 | `ChildBlob` | AI키우기의 아이 (`FEATURES.md` §3.1) |
-| `FeelingItem` | 마음 피드 항목 |
+| `FeelingItem` | 마음 한 개 (감정 · 내용 · 이름) |
+| `FeelingSphere` | AI키우기 안개 속 마음들. 끌어서 돌리는 구 표면의 마음 (`FEATURES.md` §3.2) |
 | `StatCounter` | 숫자 + 설명, 증가 애니메이션 |
 | `Bubble` | 커뮤니티 버블 S/M/L |
 | `Hotspot` | 키트 사진 위 번호 포인트. 지름 `--control-md`(44px) 원(`--radius-pill`), 민트(`--color-accent`) 면 + 차콜 번호(`ui`), `--color-surface` 2px 테두리. 호버·포커스 시 회녹색 면 + Paper White 번호. 누르면 해당 구성품으로 이동하는 링크 |
