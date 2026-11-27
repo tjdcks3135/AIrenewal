@@ -3,11 +3,12 @@
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { UNION } from "@/content/world";
 import { useCaptureMode } from "@/hooks/useCaptureMode";
 import { readDurationMs, readEase } from "@/lib/tokens";
 
 // DESIGN.md §3 Preloader — 메인 로딩 화면 (FEATURES.md §3.5)
-// 메인에 들어올 때마다: 로고(원본 그대로) 등장(--dur-slow) → 유지(--dur-slow) → 화면 퇴장(--dur-slow).
+// 메인에 들어올 때마다: 로고(원본 그대로) + 아래 글자 로고 등장(--dur-slow) → 유지(--dur-slow) → 화면 퇴장(--dur-slow).
 // 클릭·아무 키로 즉시 사라진다. 캡처 모드에서는 없음. 움직임 줄이기면 움직임 없이 짧게.
 // 데이터 로딩을 기다리지 않는 연출용 화면이다.
 
@@ -68,11 +69,14 @@ export function Preloader() {
           transition={{ duration: instant || reduced ? 0 : slow / 1000, ease: easeInOut }}
         >
           <motion.div
+            className="flex flex-col items-center gap-5"
             initial={reduced ? false : { opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: slow / 1000, ease: easeOut }}
           >
             <Image src="/images/brand/logo.png" alt="" width={711} height={557} priority unoptimized className="h-10 w-auto" />
+            {/* 글자 로고 — 헤더 로고와 같은 문구 (world.ts UNION.logoText) */}
+            <p className="text-h3 font-bold whitespace-nowrap text-on-header">{UNION.logoText}</p>
           </motion.div>
         </motion.div>
       )}
