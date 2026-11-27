@@ -128,6 +128,7 @@ bg `#FFFFFF` · surface `#F4F7F6` · surface-2 `#E9EFEC` · line `#D6E0DC` · te
 | `--radius-glass` | 16px — 안개 위 유리 패널(AI키우기 입력창)에만. 각진 박스보다 안개에 부드럽게 어울리도록 (2026-11-27 추가, 피그마에 없음) |
 | 테두리 | 1px (피그마 border-1) |
 | `--shadow-overlay` | `0 24px 80px rgba(37,42,40,0.16)` (모달 전용, 피그마에 없음) |
+| `--blur-aura` | `12px` — 커뮤니티 버블의 빛 번짐 (2026-11-27 추가, 피그마에 없음) |
 | `--blur-glass` | `24px` — 안개 위 유리 패널의 뒤 흐림 (AI키우기 입력창, 2026-11-27 추가, 피그마에 없음). 바탕은 `--color-bg` 55% + `--color-line` 테두리 — 흰 박스 대신 안개에 녹아드는 반투명 면 |
 | `--ease-out` | `cubic-bezier(0.16, 1, 0.3, 1)` |
 | `--ease-in-out` | `cubic-bezier(0.76, 0, 0.24, 1)` |
@@ -174,7 +175,7 @@ bg `#FFFFFF` · surface `#F4F7F6` · surface-2 `#E9EFEC` · line `#D6E0DC` · te
 | `FeelingItem` | 마음 한 개 (감정 · 내용 · 이름) |
 | `FeelingSphere` | AI키우기 안개 속 마음들. 끌어서 돌리는 구 표면의 마음 (`FEATURES.md` §3.2) |
 | `StatCounter` | 숫자 + 설명, 증가 애니메이션 |
-| `Bubble` | 커뮤니티 버블 S/M/L |
+| `Bubble` | 커뮤니티 버블 S/M/L — 지름 `--bubble-sm` 144 / `--bubble-md` 184 / `--bubble-lg` 240px. 카테고리 색 방사형 빛(aura, `--blur-aura` 12px로 번짐) 위에 카테고리 · 제목 · 날짜(큰 버블은 첫 문장 일부까지). 글자는 차콜 (2026-11-27) |
 | `Hotspot` | 키트 사진 위 번호 포인트. 지름 `--control-md`(44px) 원(`--radius-pill`), 민트(`--color-accent`) 면 + 차콜 번호(`ui`), `--color-surface` 2px 테두리. 호버·포커스 시 회녹색 면 + Paper White 번호. 누르면 해당 구성품으로 이동하는 링크 |
 | `Skeleton` | 로딩 상태 |
 | `PhotoFrame` | 사진 자리. 사진이 없으면 회색 플레이스홀더 + "사진 ③", 로드 실패 시 회색 + 대체 텍스트 (CLAUDE.md §6, FEATURES.md §6) |

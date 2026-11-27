@@ -132,6 +132,10 @@
   --spacing-control-sm: var(--control-sm);
   --spacing-control-md: var(--control-md);
   --spacing-control-lg: var(--control-lg);
+  /* 커뮤니티 버블 지름: size-bubble-sm / md / lg */
+  --spacing-bubble-sm: var(--bubble-sm);
+  --spacing-bubble-md: var(--bubble-md);
+  --spacing-bubble-lg: var(--bubble-lg);
 
   /* 콘텐츠 최대 폭: max-w-content */
   --container-content: var(--content-max);
@@ -169,6 +173,11 @@
 @utility backdrop-blur-glass {
   -webkit-backdrop-filter: blur(var(--blur-glass));
   backdrop-filter: blur(var(--blur-glass));
+}
+
+/* 빛 번짐: 커뮤니티 버블의 aura (DESIGN.md §3 Bubble, --blur-aura) */
+@utility blur-aura {
+  filter: blur(var(--blur-aura));
 }
 
 /* 색상 띠: 마음의 색 고르기 (DESIGN.md §1.3). 손잡이 색은 --hue-thumb 로 지금 고른 색을 받는다 */

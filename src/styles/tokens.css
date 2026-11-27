@@ -129,6 +129,12 @@
 
   --shadow-overlay: 0 24px 80px rgba(37, 42, 40, 0.16); /* 모달 전용 */
   --blur-glass: 24px; /* 안개 위 유리 패널 (AI키우기 입력창) */
+  --blur-aura: 12px; /* 커뮤니티 버블의 빛 번짐 */
+
+  /* 커뮤니티 버블 지름 S/M/L (DESIGN.md §3 Bubble) */
+  --bubble-sm: 144px;
+  --bubble-md: 184px;
+  --bubble-lg: 240px;
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
