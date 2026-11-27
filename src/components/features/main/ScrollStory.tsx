@@ -1,9 +1,10 @@
 "use client";
 
-import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react";
-import { useRef, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
+import { useRef } from "react";
 import { PhotoFrame } from "@/components/ui/PhotoFrame";
 import { MAIN_STORY } from "@/content/main";
+import { useStickySteps } from "@/hooks/useStickySteps";
 import { cn } from "@/lib/cn";
 import { readDurationMs, readEase } from "@/lib/tokens";
 import { ChapterBody, TOTAL_SECTIONS, type Chapter, type MainLiveData } from "./ChapterBody";
@@ -16,27 +17,12 @@ type ScrollStoryProps = { chapters: readonly Chapter[]; live: MainLiveData };
 
 export function ScrollStory({ chapters, live }: ScrollStoryProps) {
   const ref = useRef<HTMLElement>(null);
-  const [active, setActive] = useState(0);
-  const n = chapters.length;
-
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
-  // 스크롤 가능한 길이 = (장 수 - 1) × 화면 높이. i번째 장은 i × 화면 높이 지점을 중심으로 보인다 (goTo 와 같은 기준).
-  useMotionValueEvent(scrollYProgress, "change", (p) => {
-    setActive(Math.min(n - 1, Math.max(0, Math.round(p * (n - 1)))));
-  });
+  const { active, goTo } = useStickySteps(ref, chapters.length);
 
   const slow = readDurationMs("--dur-slow", 600) / 1000;
   const base = readDurationMs("--dur-base", 300) / 1000;
   const easeInOut = readEase("--ease-in-out", [0.76, 0, 0.24, 1]);
   const easeOut = readEase("--ease-out", [0.16, 1, 0.3, 1]);
-
-  /** 진행 점: 해당 장이 시작되는 스크롤 위치로 이동 */
-  function goTo(i: number) {
-    const el = ref.current;
-    if (!el) return;
-    const top = el.getBoundingClientRect().top + window.scrollY + i * window.innerHeight;
-    window.scrollTo({ top, behavior: "smooth" });
-  }
 
   const chapter = chapters[active];
 

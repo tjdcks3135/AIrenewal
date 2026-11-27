@@ -10,7 +10,7 @@ export type MainPhoto = {
 };
 
 export const MAIN_HERO = {
-  photo: { no: "①", src: null, alt: "생존키트 조끼를 입은 사람의 측면 모습" } satisfies MainPhoto,
+  photo: { no: "①", src: "/images/photos/photo-01-wearing-back.webp", alt: "생존키트 조끼를 메고 돌아선 사람의 뒷모습" } satisfies MainPhoto,
   /** 모토 — 강조 단어는 emphasis 로 분리 (CONTENT.md §2 타이틀) */
   motto: { before: "우리는 일자리를 잃었지만, ", emphasis: "서로를", after: " 잃지 않는다" },
   label: "연대노동조합 · 2031",
@@ -27,7 +27,7 @@ export const MAIN_STORY = {
   chapters: [
     {
       key: "kit",
-      photo: { no: "②", src: null, alt: "생존키트 조끼를 입은 사람의 정면과 뒷모습" },
+      photo: { no: "②", src: "/images/photos/photo-02-wearing-front.webp", alt: "생존키트 조끼를 입고 가슴끈을 잡은 사람의 정면, 왼쪽 주머니에 금속 캡슐" },
       title: "당신에게 도착한 생존키트",
       // [초안] CONTENT.md §3 키트 소개 문장
       description:
@@ -36,14 +36,14 @@ export const MAIN_STORY = {
     },
     {
       key: "grow",
-      photo: { no: "③", src: null, alt: "열린 가방에서 키트 소품들이 빠져나오는 연출 사진" },
+      photo: { no: "③", src: "/images/photos/photo-03-kit-unpacking.webp", alt: "열린 조끼 주머니에서 도시락통이 나오고, 오브제와 금속 캡슐이 함께 놓인 연출 사진" },
       title: "우리가 함께 키우는 아이",
       description: null,
       href: "/grow",
     },
     {
       key: "community",
-      photo: { no: "④", src: null, alt: "가방과 키트 소품들을 나란히 놓은 사진" },
+      photo: { no: "④", src: "/images/photos/photo-04-kit-flatlay.webp", alt: "조끼와 초대장, 도시락통, 금속 캡슐, 오브제를 나란히 놓은 사진" },
       title: "아이를 어떻게 키울까요?",
       description: null,
       href: "/community",

@@ -165,7 +165,7 @@ bg `#FFFFFF` · surface `#F4F7F6` · surface-2 `#E9EFEC` · line `#D6E0DC` · te
 | `FeelingItem` | 마음 피드 항목 |
 | `StatCounter` | 숫자 + 설명, 증가 애니메이션 |
 | `Bubble` | 커뮤니티 버블 S/M/L |
-| `Hotspot` | 키트 사진 위 번호 포인트 |
+| `Hotspot` | 키트 사진 위 번호 포인트. 지름 `--control-md`(44px) 원(`--radius-pill`), 민트(`--color-accent`) 면 + 차콜 번호(`ui`), `--color-surface` 2px 테두리. 호버·포커스 시 회녹색 면 + Paper White 번호. 누르면 해당 구성품으로 이동하는 링크 |
 | `Skeleton` | 로딩 상태 |
 | `PhotoFrame` | 사진 자리. 사진이 없으면 회색 플레이스홀더 + "사진 ③", 로드 실패 시 회색 + 대체 텍스트 (CLAUDE.md §6, FEATURES.md §6) |
 
@@ -176,5 +176,5 @@ bg `#FFFFFF` · surface `#F4F7F6` · surface-2 `#E9EFEC` · line `#D6E0DC` · te
 ## 5. 이미지 규칙
 - 사진은 같은 색 보정(약간 차갑고 낮은 채도, 민트·화이트 키트가 돋보이게)으로 통일.
 - 사진 위 텍스트: 하단 또는 측면에 `--color-bg` → 투명 그라데이션을 깔아 대비 확보.
-- 비율: 히어로 16:9, 메인 섹션 4:5 또는 3:2, 누끼컷은 투명 PNG/WebP 정사각.
+- 비율: 히어로 16:9, 메인 섹션 4:5 또는 3:2, 키트 구성품 클로즈업 3:2.
 - 파일: WebP, 긴 변 2400px 이하. 원본은 `assets-src/`에 따로 보관.

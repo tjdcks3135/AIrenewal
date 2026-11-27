@@ -18,7 +18,7 @@ export const MANIFESTO_SECTIONS = {
 
 export const MANIFESTO_TITLE = {
   /** 사진 ① 인물 착용샷 측면 (IA.md §6) */
-  photo: { no: "①", src: null, alt: "생존키트 조끼를 입은 사람의 측면 모습" } satisfies ManifestoPhoto,
+  photo: { no: "①", src: "/images/photos/photo-01-wearing-back.webp", alt: "생존키트 조끼를 메고 돌아선 사람의 뒷모습" } satisfies ManifestoPhoto,
   date: WORLD.foundedAt,
   heading: ["우리는 일자리를 잃었지만, ", { em: "서로를" }, " 잃지 않는다."] as RichText,
   /** 서명 수 = 기준값 + 실제 가입자 수 (FEATURES.md §4) */

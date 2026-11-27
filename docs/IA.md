@@ -76,4 +76,6 @@ flowchart LR
 | ④ | 키트 연출샷 ii — 가방과 소품을 나열 | 커뮤니티 |
 | ⑤ | 키트 연출샷 iii — 내용물을 펼친 샷 | 가입하기 (키트 받기) |
 
+**연결된 파일 (2026-11-27, `public/images/photos/`)**: ① `photo-01-wearing-back` · ② `photo-02-wearing-front` · ③ `photo-03-kit-unpacking`(세로 2:3) · ④ `photo-04-kit-flatlay` · ⑤ 없음 (`TODO(팀)` 내용물을 펼친 컷 — ④와 같은 사진을 쓸지, 새로 찍을지). 키트 구성품: `vest-logo`, `lunchbox`, `capsule`, `object-hand` (초대장 없음). 원본·보정본은 `assets-src/photos/`.
+
 `TODO(팀)` ②번 "사이트 설명 페이지"를 키트 설명으로 연결했는데, 별도의 '사이트 소개' 섹션을 의도한 것이라면 알려주세요.
