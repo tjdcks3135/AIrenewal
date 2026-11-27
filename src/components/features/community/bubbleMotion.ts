@@ -2,12 +2,14 @@
 // - 고정 시드로 겹치지 않게 흩어 놓는다 (같은 데이터면 항상 같은 배치 — 캡처 모드)
 // - 느리게 떠다니다 벽·다른 버블에 부딪히면 튕긴다
 // - 잡기 쉽게: 커서가 가까울수록 느려지고, 버블 위에 올리면 멈춘다 (이전 사이트)
+// - 처음 배치 뒤에 생긴 버블(새 글)은 광장 아래에서 떠오른다 — 빠르게 출발해 차츰 보통 속도로
 
 type Bubble = { el: HTMLElement; r: number; x: number; y: number; vx: number; vy: number; frozen: boolean };
 
 const SPEED = 14; // px/s
 const GAP = 16; // 처음 배치할 때 버블 사이 여백
 const SLOW_RADIUS = 260; // 커서가 이 거리 안이면 느려진다
+const RISE_SPEED = 260; // 새 버블이 떠오르기 시작하는 속도 (px/s)
 
 /** id 마다 같은 난수열 (고정 시드) */
 function rngFor(id: string) {
@@ -26,6 +28,8 @@ export class BubbleMotion {
   private h = 1;
   private px = -1e5;
   private py = -1e5;
+  /** 처음 배치가 끝났는지 — 이후에 생기는 버블은 아래에서 떠오른다 */
+  private settled = false;
 
   setField(w: number, h: number) {
     this.w = Math.max(1, w);
@@ -45,6 +49,12 @@ export class BubbleMotion {
       const el = nodes.get(id)!;
       const r = el.offsetWidth / 2;
       const rng = rngFor(id);
+      if (this.settled) {
+        // 새 글: 광장 아래 가운데 근처에서 위로
+        const x = this.w / 2 + (rng() - 0.5) * this.w * 0.3;
+        this.bubbles.set(id, { el, r, x, y: this.h - r, vx: (rng() - 0.5) * SPEED, vy: -RISE_SPEED, frozen: false });
+        continue;
+      }
       let x = this.w / 2;
       let y = this.h / 2;
       for (let attempt = 0; attempt < 400; attempt++) {
@@ -57,6 +67,7 @@ export class BubbleMotion {
       const speed = SPEED * (0.6 + rng() * 0.8);
       this.bubbles.set(id, { el, r, x, y, vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed, frozen: false });
     }
+    if (this.bubbles.size > 0) this.settled = true;
   }
 
   pointer(x: number, y: number) {
@@ -76,6 +87,13 @@ export class BubbleMotion {
       if (b.frozen) continue;
       const near = Math.hypot(b.x - this.px, b.y - this.py);
       const slow = Math.min(1, Math.max(0.15, near / SLOW_RADIUS));
+      // 떠오르던 새 버블은 차츰 보통 속도로
+      const speed = Math.hypot(b.vx, b.vy);
+      if (speed > SPEED * 1.6) {
+        const k = Math.max(SPEED * 1.6, speed * (1 - dt * 0.25)) / speed;
+        b.vx *= k;
+        b.vy *= k;
+      }
       b.x += b.vx * dt * slow;
       b.y += b.vy * dt * slow;
       if (b.x < b.r) {

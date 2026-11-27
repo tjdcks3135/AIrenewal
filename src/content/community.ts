@@ -35,5 +35,21 @@ export const COMMUNITY_TEXT = {
     // [초안]
     deleteConfirm: "이 댓글을 지울까요? 지운 댓글은 되돌릴 수 없어요.",
   },
-  writeTodo: "TODO: 이야기 작성 모달 (PAGES.md §8 — 다음 단계)",
+  /** 이야기 작성 창 (CONTENT.md — 이야기 작성 창 문구) */
+  compose: {
+    title: "이야기 남기기",
+    // [이전]
+    description: "당신의 이야기가 새로운 버블이 되어 광장에 떠오릅니다.",
+    category: "카테고리",
+    postTitle: "제목",
+    // [이전]
+    titlePlaceholder: "이야기의 제목을 적어주세요",
+    body: "이야기",
+    // [이전]
+    bodyPlaceholder: "당신의 이야기를 들려주세요. 줄을 바꾸면 문단이 나뉩니다.",
+    cancel: "취소",
+    submit: "버블로 띄우기",
+    // [초안]
+    done: "이야기가 광장에 떠올랐어요",
+  },
 } as const;

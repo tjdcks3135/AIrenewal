@@ -6,7 +6,6 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { AuthGate } from "@/components/features/AuthGate";
 import { Button } from "@/components/ui/Button";
-import { Overlay } from "@/components/ui/Overlay";
 import { Skeleton } from "@/components/ui/Skeleton";
 import { Tab, TabList } from "@/components/ui/Tab";
 import { COMMUNITY_TEXT } from "@/content/community";
@@ -16,6 +15,7 @@ import { useCaptureMode } from "@/hooks/useCaptureMode";
 import { usePosts } from "@/hooks/usePosts";
 import { formatNumber } from "@/lib/format";
 import { BubbleField } from "./BubbleField";
+import { PostComposer } from "./PostComposer";
 import { PostOverlay } from "./PostOverlay";
 
 // 커뮤니티 `/community` — PAGES.md §8 화면 구도(토대)
@@ -26,7 +26,7 @@ export function CommunityContent() {
   const capture = useCaptureMode();
   const reduced = useReducedMotion() ?? false;
   const auth = useAuth();
-  const { state: posts, adjust } = usePosts();
+  const { state: posts, adjust, add } = usePosts();
   const router = useRouter();
   const pathname = usePathname();
   const params = useSearchParams();
@@ -103,11 +103,16 @@ export function CommunityContent() {
         onCounts={adjust}
       />
 
-      {/* 쓰기: 비로그인 → "조합원만 할 수 있어요" / 조합원 → 작성 모달(다음 단계) */}
+      {/* 쓰기: 비로그인 → "조합원만 할 수 있어요" / 조합원 → 작성 창. 띄우면 필터를 풀어 새 버블이 보이게 */}
       <AuthGate open={writeOpen && auth.status !== "member"} onClose={() => setWriteOpen(false)} />
-      <Overlay open={writeOpen && auth.status === "member"} onClose={() => setWriteOpen(false)} title={COMMUNITY_TEXT.write}>
-        <p className="text-caption text-text-3">{COMMUNITY_TEXT.writeTodo}</p>
-      </Overlay>
+      <PostComposer
+        open={writeOpen && auth.status === "member"}
+        onClose={() => setWriteOpen(false)}
+        onPosted={(post) => {
+          setFilter(null);
+          add(post);
+        }}
+      />
     </>
   );
 }
