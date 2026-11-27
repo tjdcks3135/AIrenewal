@@ -168,6 +168,45 @@ export async function fetchPosts(): Promise<PostView[]> {
   return (data as unknown as PostRow[]).map(toPostView);
 }
 
+export const POST_TITLE_MAX = 60;
+export const POST_BODY_MAX = 1200;
+
+/** 이야기 남기기 (로그인한 조합원 — RLS 가 작성자를 본인으로 강제). 새 글을 작성자·숫자와 함께 돌려준다 */
+export async function insertPost(category: Category, title: string, body: string): Promise<PostView> {
+  const supabase = getSupabase();
+  if (!supabase) throw new DataError("not configured");
+  const { data, error } = await supabase
+    .from("posts")
+    .insert({ category, title: title.trim(), body: body.trim() })
+    .select(POST_SELECT)
+    .single();
+  if (error) throw new DataError(error.message);
+  return toPostView(data as unknown as PostRow);
+}
+
+/** 새 글이 올라오면 (실시간) — 다른 사람이 쓴 글도 광장에 떠오른다. 해제 함수를 돌려준다 */
+export function subscribeToNewPosts(onInsert: (post: PostView) => void): () => void {
+  const supabase = getSupabase();
+  if (!supabase) return () => {};
+  const channel = supabase
+    .channel(`posts-insert-${Math.random().toString(36).slice(2)}`)
+    .on("postgres_changes", { event: "INSERT", schema: "public", table: "posts" }, (payload) => {
+      const id = (payload.new as { id: string }).id;
+      void supabase
+        .from("posts")
+        .select(POST_SELECT)
+        .eq("id", id)
+        .maybeSingle()
+        .then(({ data }) => {
+          if (data) onInsert(toPostView(data as unknown as PostRow));
+        });
+    })
+    .subscribe();
+  return () => {
+    void supabase.removeChannel(channel);
+  };
+}
+
 // ─── 글 상세: 댓글 · 공감 (PAGES.md §8) ──────────────────────
 
 export const COMMENT_MAX_LENGTH = 500;
