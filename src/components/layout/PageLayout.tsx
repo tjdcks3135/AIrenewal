@@ -10,20 +10,22 @@ import { NextStepCTA } from "./NextStepCTA";
 type PageLayoutProps = {
   /** 하단 "다음 단계" CTA (IA.md §3). null 이면 표시하지 않음 */
   next: NextStepKey | null;
+  /** 로그인한 조합원에게는 이 단계를 대신 보여준다 (IA.md §3) */
+  memberNext?: NextStepKey;
   /** true 면 본문이 투명 헤더 아래까지 올라간다 (히어로 사진 등) */
   underHeader?: boolean;
   children: ReactNode;
   className?: string;
 };
 
-export function PageLayout({ next, underHeader = false, children, className }: PageLayoutProps) {
+export function PageLayout({ next, memberNext, underHeader = false, children, className }: PageLayoutProps) {
   return (
     <div className="flex min-h-dvh flex-col">
       <Header />
       <main id="main" className={cn("flex-1", !underHeader && "pt-8", className)}>
         {children}
       </main>
-      {next && <NextStepCTA step={next} />}
+      {next && <NextStepCTA step={next} memberStep={memberNext} />}
       <Footer />
     </div>
   );

@@ -16,6 +16,18 @@ export async function fetchRealFeelingsCount(): Promise<number> {
   return count ?? 0;
 }
 
+/** 실제 가입한 조합원 수 (예시 조합원 제외). 화면에는 서명 수 기본값과 더해 보여준다 (FEATURES.md §4). */
+export async function fetchRealSignaturesCount(): Promise<number> {
+  const supabase = getSupabase();
+  if (!supabase) return 0;
+  const { count, error } = await supabase
+    .from("profiles")
+    .select("id", { count: "exact", head: true })
+    .eq("is_seed", false);
+  if (error) throw new DataError(error.message);
+  return count ?? 0;
+}
+
 export type DiscussionPreview = { id: string; title: string; createdAt: string };
 
 /** 최근 "키움 토론" 글 (메인 섹션 4 미리보기) */
