@@ -79,7 +79,7 @@ export function FeelingSphere({ items, motion, frame, still, reduced, className 
       onKeyDown={(e) => {
         if (!still && motion.key(e.key)) e.preventDefault();
       }}
-      className={cn("touch-pan-y overflow-hidden select-none", !still && "cursor-grab active:cursor-grabbing", className)}
+      className={cn("touch-pan-y overflow-clip select-none", !still && "cursor-grab active:cursor-grabbing", className)}
     >
       {items.map((f) => (
         <div
