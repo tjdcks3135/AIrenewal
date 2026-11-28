@@ -57,7 +57,7 @@ export function BubbleField({ posts, filter, still, className }: BubbleFieldProp
       ref={box}
       role="list"
       aria-label={COMMUNITY_TEXT.plazaLabel}
-      className={cn("overflow-hidden", className)}
+      className={cn("overflow-clip", className)}
       onPointerMove={(e) => {
         const r = e.currentTarget.getBoundingClientRect();
         motion.pointer(e.clientX - r.left, e.clientY - r.top);

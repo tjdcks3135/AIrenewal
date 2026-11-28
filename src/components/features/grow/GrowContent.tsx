@@ -83,7 +83,7 @@ export function GrowContent() {
   return (
     <>
       {desktop ? (
-        <section aria-labelledby="grow-title" className="relative h-dvh overflow-hidden">
+        <section aria-labelledby="grow-title" className="relative h-dvh overflow-clip">
           {/* 돔: 화면 폭의 1.25배인 원(양옆으로 넘침), 중심이 이 화면의 아래쪽(5/6 지점) → 위쪽 반원이 크게 보인다 */}
           <div className="absolute top-5/6 -left-1/8 aspect-square w-5/4 -translate-y-1/2">{blob}</div>
           {/* 아래 끝이 칼로 자른 듯 끊기지 않게 바탕색으로 스며들게 */}
